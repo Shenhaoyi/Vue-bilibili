@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="login-top">
-      <div>1</div>
+      <div></div>
       <div>{{middleTop}}</div>
-      <div>1</div>
+      <div></div>
     </div>
   </div>
 </template>

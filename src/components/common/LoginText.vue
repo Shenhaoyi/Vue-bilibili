@@ -28,7 +28,6 @@
 
       //监听输入的内容
       if(rule.test(this.content)){
-        console.log('条件满足了')
         this.$emit('validInput',this.content)
       }
     }
