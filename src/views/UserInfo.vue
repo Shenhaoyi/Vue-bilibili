@@ -2,7 +2,7 @@
   <div class="user-info">
     <NavBar></NavBar>
     <img src="../assets/bannerTop_new.png" class="background" alt="">
-    <div></div>
+    <UserDetail></UserDetail>
   </div>
 </template>
 
@@ -10,8 +10,9 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
+  import UserDetail from '@/components/usercomponent/UserDetail.vue';
   @Component({
-    components: {NavBar}
+    components: {UserDetail, NavBar}
   })
   export default class UserInfo extends Vue {
 
@@ -21,7 +22,7 @@
 <style lang="scss" scoped>
   .user-info{
     img{
-      height:131px;
+      height:100px;
       width:100%;
     }
   }
