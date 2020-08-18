@@ -18,7 +18,7 @@
             <span class="text">获赞</span>
           </p>
         </div>
-        <div class="edit-data">
+        <div class="edit-data" @click="$router.push('/edit')">
           编辑资料
         </div>
       </div>

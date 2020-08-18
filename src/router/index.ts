@@ -5,6 +5,7 @@ import Register from '@/views/Register.vue';
 import Login from '@/views/Login.vue';
 import UserInfo from '@/views/UserInfo.vue';
 import {Toast} from 'vant';
+import Edit from '@/views/Edit.vue';
 
 Vue.use(VueRouter);
 
@@ -29,9 +30,17 @@ const routes: Array<RouteConfig> = [
     name: 'UserInfo',
     component: UserInfo,
     meta: {
-      istoken: true
+      isToken: true
     }
-  }
+  },
+  {//编辑页面
+    path: '/edit',
+    name: 'Edit',
+    component: Edit,
+    meta: {
+      isToken: true
+    }
+  },
 ];
 
 const router = new VueRouter({
@@ -40,7 +49,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   //如果是需要验证的，并且没有token或者 id的，需要重新登录
-  if (to.meta.istoken && (!localStorage.getItem('id') || !localStorage.getItem('objtoken'))) {
+  if (to.meta.isToken && (!localStorage.getItem('id') || !localStorage.getItem('objtoken'))) {
       router.push('/login').then(() => {
         Toast.fail('请重新登录！');
       });
