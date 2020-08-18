@@ -13,10 +13,6 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
 
-//引入轻提示
-import { Toast } from 'vant';
-Vue.prototype['$msg'] = Toast
-
 Vue.config.productionTip = false
 
 new Vue({
