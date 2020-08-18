@@ -10,7 +10,7 @@
     <LoginText label="账号"
                placeholder="请输入账号"
                rule="^.{6,16}$"
-               @validInput="content=> user.accountNumbers = content"
+               @validInput="content=> user.username = content"
     ></LoginText>
     <LoginText label="密码 "
                placeholder="请输入密码"
@@ -33,13 +33,19 @@
     components: {LoginBtn, LoginText, LoginTop}
   })
   export default class Register extends Vue {
-    user: Record<string, any> = {
+    user = {
       name: '',
-      accountNumbers: '',
-      password: ''
+      username: '',
+      password: '',
     };
-    registerSubmit(){
-      console.log(this.user)
+    $http: any;
+
+    registerSubmit() {
+      if (this.user.name && this.user.username && this.user.password) {
+        this.$http.post('/register',this.user).then(res=>{
+          console.log(res)
+        });
+      }
     }
   }
 </script>

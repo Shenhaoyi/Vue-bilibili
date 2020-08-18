@@ -6,7 +6,7 @@ import store from './store'
 
 import http from '../http'
 //把 http挂载到Vue的原型上
-Vue.prototype.$http = http
+Vue.prototype['$http'] = http
 
 //引入Vant
 import Vant from 'vant';
