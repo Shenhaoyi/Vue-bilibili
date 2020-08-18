@@ -1,7 +1,7 @@
 <template>
   <div>
     1
-    <LoginTop></LoginTop>
+    <LoginTop middle-top="注册bilibili"></LoginTop>
   </div>
 </template>
 
