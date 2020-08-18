@@ -1,10 +1,13 @@
 <template>
   <div class="edit-wrapper">
     <NavBar style="margin-bottom:10px;" :user-info_img="userInfo.user_img"></NavBar>
-    <EditItem left="头像">
-      <img class='user-img' v-if="userInfo && userInfo.user_img" :src='userInfo.user_img'>
-      <img class='user-img' v-else src="@/assets/default_img.jpg">
-    </EditItem>
+    <div class="head-photo">
+      <van-uploader :after-read="afterRead" preview-size="100vw" class="upload-img"/>
+      <EditItem left="头像" >
+        <img class='user-img' v-if="userInfo && userInfo.user_img" :src='userInfo.user_img'>
+        <img class='user-img' v-else src="@/assets/default_img.jpg">
+      </EditItem>
+    </div>
     <EditItem left="昵称">
       <a href="javascript:;">{{userInfo.name}}</a>
     </EditItem>
@@ -35,13 +38,22 @@
     userInfo = {};
     $http: any;
 
-    async selectorUser(){
+    async selectorUser() {
       const res = await this.$http.get('./user/' + localStorage.getItem('id'));
       this.userInfo = res.data[0];
-      console.log(this.userInfo)
     }
-    created(){
-      this.selectorUser()
+
+    created() {
+      this.selectorUser();
+    }
+    /* eslint-disable */
+    async afterRead(file: any) {
+      console.log(file);
+      const formData = new FormData()
+      formData.append('file',file.file)
+      const res = await this.$http.post('/upload',formData)
+      console.log(res)
+      this.userInfo.user_img = res.data.url
     }
 
   }
@@ -49,13 +61,22 @@
 
 <style lang="scss" scoped>
   .edit-wrapper {
+    .head-photo{
+      position: relative;
+      overflow: hidden;
+      .upload-img{
+        opacity: 0;
+        position: absolute;
+      }
+    }
     .user-img {
       border-radius: 50%;
       height: 12.26667vw;
       width: 12.26667vw;
     }
-    a{
-      color:#999;
+
+    a {
+      color: #999;
     }
   }
 
