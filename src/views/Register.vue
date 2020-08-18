@@ -5,6 +5,7 @@
                style="margin:4.167vw 0;"
                placeholder="请输入姓名"
                rule="^.{6,16}$"
+               @validInput="handle"
     ></LoginText>
     <LoginText label="账号"
                placeholder="请输入账号"

@@ -11,7 +11,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Prop} from 'vue-property-decorator';
+  import {Component, Prop, Watch} from 'vue-property-decorator';
 
   @Component
   export default class LoginText extends Vue {
@@ -20,6 +20,23 @@
     @Prop() type?: string;
     @Prop() placeholder?: string;
     @Prop() rule?: string;
+
+    //输入内容正则
+    handleRules(){
+      //将字符串转成
+      const rule = new RegExp(this.rule!)
+
+      //监听输入的内容
+      if(rule.test(this.content)){
+        console.log('条件满足了')
+        this.$emit('validInput',this.content)
+      }
+    }
+
+    @Watch('content')
+    onContentChanged(val: string, oldVal: string) {
+      this.handleRules()
+    }
   }
 </script>
 
