@@ -1,6 +1,8 @@
 <template>
   <div>
-    <LoginTop middle-top="注册bilibili"></LoginTop>
+    <LoginTop middle-top="注册bilibili">
+      <div slot="right" style="font-size: 13px;" @click="$router.push('/login')">切换到登录</div>
+    </LoginTop>
     <LoginText label="姓名"
                style="margin:4.167vw 0;"
                placeholder="请输入姓名"
