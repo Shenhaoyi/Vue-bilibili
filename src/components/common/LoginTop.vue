@@ -14,7 +14,7 @@
 
   @Component
   export default class LoginTop extends Vue {
-    @Prop(Number) middleTop?: string
+    @Prop() middleTop?: string
   }
 </script>
 
