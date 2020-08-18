@@ -23,7 +23,8 @@
     @Prop() userInfo_img?: string
 
     handleClick(){
-      this.$emit('handleClick')
+      if(this.$router.currentRoute.path !=='/userinfo')
+        this.$router.push('/userinfo')
     }
   }
 </script>
