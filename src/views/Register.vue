@@ -44,16 +44,20 @@
       if(this.user.name){
         if(rule1.test(this.user.username)){
           if(rule2.test(this.user.password)){
-            const res = await this.$http.post('/register',this.user)
-            this.$msg.success(res.data.msg)
+            try{
+              const res = await this.$http.post('/register',this.user)
+              this.$msg.success(res.data.msg)
+            }catch(error){
+              this.$msg.fail('服务器维护中，请稍后再试。')
+            }
           }else{
-            this.$msg.fail('密码输入错误，请输入 6~16 位有效字符')
+            this.$msg.fail('密码输入错误，请输入 6~16 位有效字符。')
           }
         }else{
-          this.$msg.fail('账号输入错误，请输入 3~16 位有效字符')
+          this.$msg.fail('账号输入错误，请输入 3~16 位有效字符。')
         }
       }else{
-        this.$msg.fail('姓名不能为空')
+        this.$msg.fail('姓名不能为空。')
       }
     }
   }
