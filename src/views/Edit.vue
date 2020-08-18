@@ -9,28 +9,30 @@
       </EditItem>
     </div>
     <EditItem left="昵称" @handleClick="showName=true">
-      <a href="javascript:;">{{userInfo.name}}</a>
+      <a href="javascript:">{{userInfo.name}}</a>
     </EditItem>
     <EditItem left="账号">
-      <a href="javascript:;">{{userInfo.username}}</a>
+      <a href="javascript:">{{userInfo.username}}</a>
     </EditItem>
-    <EditItem left="性别">
-      <a href="javascript:;">{{userInfo.gender}}</a>
+    <EditItem left="性别" @handleClick="showGender=true">
+      <a href="javascript:">{{userInfo.gender}}</a>
     </EditItem>
-    <EditItem left="出生日期"></EditItem>
     <EditItem left="个性签名" @handleClick="showContent=true">
-      <a href="javascript:;">{{userInfo.user_desc}}</a>
+      <a href="javascript:">{{userInfo.user_desc}}</a>
     </EditItem>
 
-<!--    昵称修改 -->
+    <!--    昵称修改 -->
     <van-dialog v-model="showName" title="昵称" show-cancel-button @cancel="name=''" @confirm="confirmName">
       <van-field v-model="name" autofocus/>
     </van-dialog>
 
-<!--    个性签名-->
+    <!--    个性签名-->
     <van-dialog v-model="showContent" title="个性签名" show-cancel-button @cancel="content=''" @confirm="confirmContent">
       <van-field v-model="content" type="textarea" autofocus/>
     </van-dialog>
+
+    <!--    性别选择-->
+    <van-action-sheet v-model="showGender" cancel-text="取消" :actions="genderActions" @select="onGenderSelect"/>
 
   </div>
 </template>
@@ -40,27 +42,33 @@
   import {Component} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
   import EditItem from '@/components/common/EditItem.vue';
-  import { Toast } from 'vant';
+  import {Toast} from 'vant';
 
   @Component({
     components: {EditItem, NavBar}
   })
   export default class Edit extends Vue {
-    userInfo={}
+    userInfo = {};
     $http: any;
 
     showName = false; //通过子组件的点击事件来修改
-    name=''//与输入框双向绑定
+    name = '';//与输入框双向绑定
 
-    content=''
+    content = '';
     showContent = false;
+
+    showGender = false;
+    genderActions = [
+      {name: '女'},
+      {name: '男'},
+    ];
 
     async selectorUser() {
       const res = await this.$http.get('./user/' + localStorage.getItem('id'));
       this.userInfo = res.data[0];
     }
 
-    created() {
+    beforeCreat() {
       this.selectorUser();
     }
 
@@ -75,25 +83,33 @@
 
     async userInfoUpdate() {
       const res = await this.$http.post('/update/' + localStorage.getItem('id'), this.userInfo);
+      if (res.data.code === 200) {
+        Toast.fail('修改成功');
+      }
     }
 
-    async confirmName(){
+    async confirmName() {
       if (this.name) {
-        this.userInfo.name = this.name
-        this.name = ''
+        this.userInfo.name = this.name;
+        this.name = '';
         await this.userInfoUpdate();
       } else {
-        Toast.fail('姓名不能为空。');
+        Toast.fail('姓名不能为空');
       }
     }
 
-    async confirmContent(){
+    async confirmContent() {
       if (this.content) {
-        console.log(this.userInfo)
-        this.userInfo.user_desc = this.content
-        this.content = ''
+        this.userInfo.user_desc = this.content;
+        this.content = '';
         await this.userInfoUpdate();
       }
+    }
+
+    async onGenderSelect(data: any) {
+      this.showGender = false;
+      this.userInfo.gender = data.name;
+      await this.userInfoUpdate();
     }
 
   }
