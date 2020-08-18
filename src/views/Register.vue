@@ -40,11 +40,11 @@
     };
     $http: any;
 
-    registerSubmit() {
+    async registerSubmit() {
       if (this.user.name && this.user.username && this.user.password) {
-        this.$http.post('/register',this.user).then(res=>{
-          console.log(res)
-        });
+        const res = await this.$http.post('/register',this.user)
+        console.log(res)
+        console.log('我想要在接收到响应数据之后执行')
       }
     }
   }
