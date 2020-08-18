@@ -4,6 +4,7 @@
                :type="type"
                :placeholder="placeholder"
                :rule="rule"
+               v-model="content"
     />
   </div>
 </template>
@@ -14,10 +15,11 @@
 
   @Component
   export default class LoginText extends Vue {
-    @Prop() label?: string
-    @Prop() type?: string
-    @Prop() placeholder?: string
-    @Prop() rule?: string
+    content = '';
+    @Prop() label?: string;
+    @Prop() type?: string;
+    @Prop() placeholder?: string;
+    @Prop() rule?: string;
   }
 </script>
 
