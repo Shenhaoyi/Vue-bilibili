@@ -3,24 +3,34 @@
     <NavBar style="margin-bottom:10px;" :user-info_img="userInfo.user_img"></NavBar>
     <div class="head-photo">
       <van-uploader :after-read="afterRead" preview-size="100vw" class="upload-img"/>
-      <EditItem left="头像" >
+      <EditItem left="头像">
         <img class='user-img' v-if="userInfo && userInfo.user_img" :src='userInfo.user_img'>
         <img class='user-img' v-else src="@/assets/default_img.jpg">
       </EditItem>
     </div>
-    <EditItem left="昵称">
+    <EditItem left="昵称" @handleClick="showName=true">
       <a href="javascript:;">{{userInfo.name}}</a>
     </EditItem>
-    <EditItem left="UID">
+    <EditItem left="账号">
       <a href="javascript:;">{{userInfo.username}}</a>
     </EditItem>
     <EditItem left="性别">
       <a href="javascript:;">{{userInfo.gender}}</a>
     </EditItem>
     <EditItem left="出生日期"></EditItem>
-    <EditItem left="个性签名">
-      <a href="javascript:;">{{userInfo.decs}}</a>
+    <EditItem left="个性签名" @handleClick="showContent=true">
+      <a href="javascript:;">{{userInfo.user_desc}}</a>
     </EditItem>
+
+<!--    昵称修改 -->
+    <van-dialog v-model="showName" title="昵称" show-cancel-button @cancel="name=''" @confirm="confirmName">
+      <van-field v-model="name" autofocus/>
+    </van-dialog>
+
+<!--    个性签名-->
+    <van-dialog v-model="showContent" title="个性签名" show-cancel-button @cancel="content=''" @confirm="confirmContent">
+      <van-field v-model="content" type="textarea" autofocus/>
+    </van-dialog>
 
   </div>
 </template>
@@ -30,13 +40,20 @@
   import {Component} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
   import EditItem from '@/components/common/EditItem.vue';
+  import { Toast } from 'vant';
 
   @Component({
     components: {EditItem, NavBar}
   })
   export default class Edit extends Vue {
-    userInfo = {};
+    userInfo={}
     $http: any;
+
+    showName = false; //通过子组件的点击事件来修改
+    name=''//与输入框双向绑定
+
+    content=''
+    showContent = false;
 
     async selectorUser() {
       const res = await this.$http.get('./user/' + localStorage.getItem('id'));
@@ -46,17 +63,37 @@
     created() {
       this.selectorUser();
     }
+
     /* eslint-disable */
     async afterRead(file: any) {
-      const formData = new FormData()
-      formData.append('file',file.file)
-      const res = await this.$http.post('/upload',formData)
-      this.userInfo.user_img = res.data.url
-      await this.userInfoUpdate()
+      const formData = new FormData();
+      formData.append('file', file.file);
+      const res = await this.$http.post('/upload', formData);
+      this.userInfo.user_img = res.data.url;
+      await this.userInfoUpdate();
     }
-    async userInfoUpdate(){
-      const res = await this.$http.post('/update/'+localStorage.getItem('id'), this.userInfo)
-      console.log(res)
+
+    async userInfoUpdate() {
+      const res = await this.$http.post('/update/' + localStorage.getItem('id'), this.userInfo);
+    }
+
+    async confirmName(){
+      if (this.name) {
+        this.userInfo.name = this.name
+        this.name = ''
+        await this.userInfoUpdate();
+      } else {
+        Toast.fail('姓名不能为空。');
+      }
+    }
+
+    async confirmContent(){
+      if (this.content) {
+        console.log(this.userInfo)
+        this.userInfo.user_desc = this.content
+        this.content = ''
+        await this.userInfoUpdate();
+      }
     }
 
   }
@@ -64,14 +101,16 @@
 
 <style lang="scss" scoped>
   .edit-wrapper {
-    .head-photo{
+    .head-photo {
       position: relative;
       overflow: hidden;
-      .upload-img{
+
+      .upload-img {
         opacity: 0;
         position: absolute;
       }
     }
+
     .user-img {
       border-radius: 50%;
       height: 12.26667vw;
