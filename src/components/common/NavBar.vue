@@ -6,9 +6,9 @@
     <div class="search">
       <van-search class='van-search' placeholder="请输入搜索关键词" />
     </div>
-    <div>
-      <img v-if="userInfo_img" :src='userInfo_img'>
-      <img v-else src="@/assets/default_img.jpg">
+    <div >
+      <img v-if="userInfo_img" :src='userInfo_img' @click="handleClick">
+      <img v-else src="@/assets/default_img.jpg" @click="handleClick">
       <p>下载App</p>
     </div>
   </div>
@@ -21,6 +21,10 @@
   @Component
   export default class NavBar extends Vue {
     @Prop() userInfo_img?: string
+
+    handleClick(){
+      this.$emit('handleClick')
+    }
   }
 </script>
 
