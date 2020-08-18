@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" @click="handleClick">
     <div class="title">{{left}}</div>
     <div class="data"><slot></slot></div>
   </div>
@@ -12,6 +12,9 @@
   @Component
   export default class EditItem extends Vue {
     @Prop() left?: string
+    handleClick(){
+      this.$emit('handleClick')
+    }
   }
 </script>
 
