@@ -7,7 +7,7 @@
       <van-search class='van-search' placeholder="请输入搜索关键词" />
     </div>
     <div>
-      <img src="../../assets/default_img.jpg" alt="">
+      <img src="../../assets/me.jpg" alt="">
       <p>下载App</p>
     </div>
   </div>
@@ -57,6 +57,7 @@
       img {
         width: 24px;
         height: 24px;
+        border-radius: 50%;
       }
       p{
         padding:5px 10px;
