@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-wrapper">
+  <div class="btn-wrapper" @click="registerClick">
     <div class="login-btn">{{btnText}}</div>
   </div>
 </template>
@@ -11,7 +11,9 @@
   @Component
   export default class LoginBtn extends Vue {
     @Prop() btnText?: string
-
+    registerClick(){
+      this.$emit('registerSubmit')
+    }
   }
 </script>
 

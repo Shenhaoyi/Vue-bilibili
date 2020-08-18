@@ -18,7 +18,7 @@
                rule="^.{6,16}$"
                @validInput="content=> user.password = content"
     ></LoginText>
-    <LoginBtn btn-text="注册" @click.native="handle"></LoginBtn>
+    <LoginBtn btn-text="注册" @registerSubmit="registerSubmit"></LoginBtn>
   </div>
 </template>
 
@@ -38,7 +38,7 @@
       accountNumbers: '',
       password: ''
     };
-    handle(){
+    registerSubmit(){
       console.log(this.user)
     }
   }
