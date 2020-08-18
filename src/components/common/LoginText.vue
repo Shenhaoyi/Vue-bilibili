@@ -3,7 +3,6 @@
     <van-field :label="label"
                :type="type"
                :placeholder="placeholder"
-               :rule="rule"
                v-model="content"
     />
   </div>
@@ -19,22 +18,10 @@
     @Prop() label?: string;
     @Prop() type?: string;
     @Prop() placeholder?: string;
-    @Prop() rule?: string;
-
-    //输入内容正则
-    handleRules(){
-      //将字符串转成
-      const rule = new RegExp(this.rule!)
-
-      //监听输入的内容
-      if(rule.test(this.content)){
-        this.$emit('validInput',this.content)
-      }
-    }
 
     @Watch('content')
-    onContentChanged(val: string, oldVal: string) {
-      this.handleRules()
+    onContentChanged(val: string) {
+      this.$emit('contentChanged', val);
     }
   }
 </script>

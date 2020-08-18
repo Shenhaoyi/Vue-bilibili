@@ -4,19 +4,16 @@
     <LoginText label="姓名"
                style="margin:4.167vw 0;"
                placeholder="请输入姓名"
-               rule="^.{6,16}$"
-               @validInput="content=> user.name = content"
+               @contentChanged="content=> user.name = content"
     ></LoginText>
     <LoginText label="账号"
                placeholder="请输入账号"
-               rule="^.{6,16}$"
-               @validInput="content=> user.username = content"
+               @contentChanged="content=> user.username = content"
     ></LoginText>
     <LoginText label="密码 "
                placeholder="请输入密码"
                type="password"
-               rule="^.{6,16}$"
-               @validInput="content=> user.password = content"
+               @contentChanged="content=> user.password = content"
     ></LoginText>
     <LoginBtn btn-text="注册" @registerSubmit="registerSubmit"></LoginBtn>
   </div>
@@ -42,11 +39,21 @@
     $msg: any;
 
     async registerSubmit() {
-      if (this.user.name && this.user.username && this.user.password) {
-        const res = await this.$http.post('/register',this.user)
-        this.$msg.success(res.data.msg)
+      const rule1 = new RegExp("^.{3,16}$")
+      const rule2 = new RegExp("^.{6,16}$")
+      if(this.user.name){
+        if(rule1.test(this.user.username)){
+          if(rule2.test(this.user.password)){
+            const res = await this.$http.post('/register',this.user)
+            this.$msg.success(res.data.msg)
+          }else{
+            this.$msg.fail('密码输入错误，请输入 6~16 位有效字符')
+          }
+        }else{
+          this.$msg.fail('账号输入错误，请输入 3~16 位有效字符')
+        }
       }else{
-        this.$msg.fail('格式不正确')
+        this.$msg.fail('姓名不能为空')
       }
     }
   }
