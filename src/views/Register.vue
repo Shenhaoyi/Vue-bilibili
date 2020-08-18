@@ -15,7 +15,7 @@
                type="password"
                rule="^.{6,16}$"
     ></LoginText>
-    <LoginBtn></LoginBtn>
+    <LoginBtn btn-text="注册"></LoginBtn>
   </div>
 </template>
 
