@@ -1,13 +1,13 @@
 <template>
   <div class="nav-bar">
     <div class="logo">
-      <img src="../assets/logo.png" alt="">
+      <img src="../../assets/logo.png" alt="">
     </div>
     <div class="search">
       <van-search class='van-search' placeholder="请输入搜索关键词" />
     </div>
     <div>
-      <img src="../assets/default_img.jpg" alt="">
+      <img src="../../assets/default_img.jpg" alt="">
       <p>下载App</p>
     </div>
   </div>
