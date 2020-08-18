@@ -48,12 +48,15 @@
     }
     /* eslint-disable */
     async afterRead(file: any) {
-      console.log(file);
       const formData = new FormData()
       formData.append('file',file.file)
       const res = await this.$http.post('/upload',formData)
-      console.log(res)
       this.userInfo.user_img = res.data.url
+      await this.userInfoUpdate()
+    }
+    async userInfoUpdate(){
+      const res = await this.$http.post('/update/'+localStorage.getItem('id'), this.userInfo)
+      console.log(res)
     }
 
   }
