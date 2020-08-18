@@ -1,7 +1,7 @@
 <template>
   <div>
-    1
     <LoginTop middle-top="注册bilibili"></LoginTop>
+    <LoginText></LoginText>
   </div>
 </template>
 
@@ -9,8 +9,9 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import LoginTop from '@/components/common/LoginTop.vue';
+  import LoginText from '@/components/common/LoginText.vue';
   @Component({
-    components: {LoginTop}
+    components: {LoginText, LoginTop}
   })
   export default class Register extends Vue {
 
