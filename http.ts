@@ -27,6 +27,8 @@ http.interceptors.response.use(function (response) {
     router.push('/login').then(() => {
       Toast.fail('请重新登录！')
     })
+  }else{
+    Toast.fail('未知错误')
   }
   return Promise.reject(error);
 });
