@@ -7,7 +7,8 @@
       <van-search class='van-search' placeholder="请输入搜索关键词" />
     </div>
     <div>
-      <img src="../../assets/me.jpg" alt="">
+      <img v-if="userInfo_img" :src='userInfo_img'>
+      <img v-else src="@/assets/default_img.jpg">
       <p>下载App</p>
     </div>
   </div>
@@ -15,11 +16,11 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
 
   @Component
   export default class NavBar extends Vue {
-
+    @Prop() userInfo_img?: string
   }
 </script>
 

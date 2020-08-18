@@ -1,6 +1,6 @@
 <template>
   <div class="user-info">
-    <NavBar></NavBar>
+    <NavBar :user-info_img="userInfo.user_img"></NavBar>
     <img src="../assets/bannerTop_new.png" class="background" alt="">
     <UserDetail :userInfo="userInfo"></UserDetail>
   </div>
@@ -16,7 +16,7 @@
     components: {UserDetail, NavBar}
   })
   export default class UserInfo extends Vue {
-    userInfo={}
+    userInfo = {}
     $http: any;
 
     async fetchUserInfo(){
@@ -27,6 +27,7 @@
           }
         })
         this.userInfo = res.data[0]
+        console.log(this.userInfo)
       }catch(error){
         Toast.fail('服务器维护中，请稍后再试。')
       }

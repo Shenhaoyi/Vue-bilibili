@@ -1,7 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="part1">
-      <img class='user-img' src="@/assets/me.jpg" alt="">
+      <img class='user-img' v-if="userInfo && userInfo.user_img" :src='userInfo.user_img'>
+      <img class='user-img' v-else src="@/assets/default_img.jpg">
       <div class="user-edit">
         <div>
           <p>
@@ -24,11 +25,12 @@
     </div>
     <div class="part2">
       <div class="name-wrapper">
-        <span class="name">小黑</span>
+        <span class="name">{{userInfo.name || '用户未登录'}}</span>
         <span></span>
       </div>
       <div>
-        <span class="brief-instr">这个人很神秘，神秘都没写。</span>
+        <span class="brief-instr" v-if="userInfo.user_decs">这个人很神秘，神秘都没写。</span>
+        <span class="brief-instr" v-else>这个人很神秘，神秘都没写。</span>
       </div>
     </div>
     <div class="tabs">
@@ -40,10 +42,11 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
 
   @Component
   export default class UserDetail extends Vue {
+    @Prop() userInfo: any
 
   }
 </script>
