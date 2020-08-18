@@ -1,6 +1,24 @@
 <template>
-  <div class="user-info">
-    <NavBar :user-info_img="userInfo.user_img"></NavBar>
+  <div class="edit-wrapper">
+    <NavBar style="margin-bottom:10px;" :user-info_img="userInfo.user_img"></NavBar>
+    <EditItem left="头像">
+      <img class='user-img' v-if="userInfo && userInfo.user_img" :src='userInfo.user_img'>
+      <img class='user-img' v-else src="@/assets/default_img.jpg">
+    </EditItem>
+    <EditItem left="昵称">
+      <a href="javascript:;">{{userInfo.name}}</a>
+    </EditItem>
+    <EditItem left="UID">
+      <a href="javascript:;">{{userInfo.username}}</a>
+    </EditItem>
+    <EditItem left="性别">
+      <a href="javascript:;">{{userInfo.gender}}</a>
+    </EditItem>
+    <EditItem left="出生日期"></EditItem>
+    <EditItem left="个性签名">
+      <a href="javascript:;">{{userInfo.decs}}</a>
+    </EditItem>
+
   </div>
 </template>
 
@@ -8,21 +26,36 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
+  import EditItem from '@/components/common/EditItem.vue';
 
   @Component({
-    components: {NavBar}
+    components: {EditItem, NavBar}
   })
   export default class Edit extends Vue {
     userInfo = {};
+    $http: any;
+
+    async selectorUser(){
+      const res = await this.$http.get('./user/' + localStorage.getItem('id'));
+      this.userInfo = res.data[0];
+      console.log(this.userInfo)
+    }
+    created(){
+      this.selectorUser()
+    }
 
   }
 </script>
 
 <style lang="scss" scoped>
-  .user-info {
-    img {
-      height: 100px;
-      width: 100%;
+  .edit-wrapper {
+    .user-img {
+      border-radius: 50%;
+      height: 12.26667vw;
+      width: 12.26667vw;
+    }
+    a{
+      color:#999;
     }
   }
 
