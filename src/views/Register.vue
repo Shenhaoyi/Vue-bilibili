@@ -52,7 +52,7 @@
               localStorage.setItem('id', res.data.id)
               localStorage.setItem('objtoken', res.data.objtoken)
               setTimeout(()=>{
-                this.$router.push('/login')
+                this.$router.push('/userinfo')
               },1000)
             }catch(error){
               Toast.fail('服务器维护中，请稍后再试。')
