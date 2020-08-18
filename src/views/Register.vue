@@ -39,12 +39,15 @@
       password: '',
     };
     $http: any;
+    $msg: any;
 
     async registerSubmit() {
       if (this.user.name && this.user.username && this.user.password) {
         const res = await this.$http.post('/register',this.user)
         console.log(res)
         console.log('我想要在接收到响应数据之后执行')
+      }else{
+        this.$msg.fail('格式不正确')
       }
     }
   }
