@@ -20,6 +20,7 @@
     <EditItem left="个性签名" @handleClick="showContent=true">
       <a href="javascript:">{{userInfo.user_desc}}</a>
     </EditItem>
+    <div class="edit-back" @click="$router.back()">返回个人中心</div>
 
     <!--    昵称修改 -->
     <van-dialog v-model="showName" title="昵称" show-cancel-button @cancel="name=''" @confirm="confirmName">
@@ -138,6 +139,16 @@
 
     a {
       color: #999;
+    }
+    .edit-back{
+      margin-top:5.3333vw;
+      background: #fb7299;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4vw;
+      color:#fff;
+      padding:2.66667vw;
     }
   }
 
