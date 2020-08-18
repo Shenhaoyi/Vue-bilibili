@@ -15,6 +15,7 @@
                type="password"
                rule="^.{6,16}$"
     ></LoginText>
+    <LoginBtn></LoginBtn>
   </div>
 </template>
 
@@ -23,8 +24,9 @@
   import {Component} from 'vue-property-decorator';
   import LoginTop from '@/components/common/LoginTop.vue';
   import LoginText from '@/components/common/LoginText.vue';
+  import LoginBtn from '@/components/common/LoginBtn.vue';
   @Component({
-    components: {LoginText, LoginTop}
+    components: {LoginBtn, LoginText, LoginTop}
   })
   export default class Register extends Vue {
 
