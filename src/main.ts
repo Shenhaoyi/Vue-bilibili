@@ -4,6 +4,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+import http from '../http'
+
 //引入Vant
 import Vant from 'vant';
 import 'vant/lib/index.css';
