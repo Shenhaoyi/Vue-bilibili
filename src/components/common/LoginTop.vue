@@ -1,18 +1,15 @@
 <template>
   <div>
-    1
-    <LoginTop></LoginTop>
+    111
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import LoginTop from '@/components/common/LoginTop.vue';
-  @Component({
-    components: {LoginTop}
-  })
-  export default class Register extends Vue {
+
+  @Component
+  export default class LoginTop extends Vue {
 
   }
 </script>
