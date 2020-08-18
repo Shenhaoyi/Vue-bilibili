@@ -27,6 +27,7 @@
   import LoginTop from '@/components/common/LoginTop.vue';
   import LoginText from '@/components/common/LoginText.vue';
   import LoginBtn from '@/components/common/LoginBtn.vue';
+  import {Toast} from 'vant';
 
   @Component({
     components: {LoginBtn, LoginText, LoginTop}
@@ -38,7 +39,6 @@
       password: '',
     };
     $http: any;
-    $msg: any;
 
     async registerSubmit() {
       const rule1 = new RegExp("^.{3,16}$")
@@ -48,18 +48,18 @@
           if(rule2.test(this.user.password)){
             try{
               const res = await this.$http.post('/register',this.user)
-              this.$msg.success(res.data.msg)
+              Toast.success(res.data.msg)
             }catch(error){
-              this.$msg.fail('服务器维护中，请稍后再试。')
+              Toast.fail('服务器维护中，请稍后再试。')
             }
           }else{
-            this.$msg.fail('密码输入错误，请输入 6~16 位有效字符。')
+            Toast.fail('密码输入错误，请输入 6~16 位有效字符。')
           }
         }else{
-          this.$msg.fail('账号输入错误，请输入 3~16 位有效字符。')
+          Toast.fail('账号输入错误，请输入 3~16 位有效字符。')
         }
       }else{
-        this.$msg.fail('姓名不能为空。')
+        Toast.fail('姓名不能为空。')
       }
     }
   }
