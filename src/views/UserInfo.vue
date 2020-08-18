@@ -2,7 +2,7 @@
   <div class="user-info">
     <NavBar></NavBar>
     <img src="../assets/bannerTop_new.png" class="background" alt="">
-    <UserDetail></UserDetail>
+    <UserDetail :userInfo="userInfo"></UserDetail>
   </div>
 </template>
 
@@ -11,11 +11,29 @@
   import {Component} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
   import UserDetail from '@/components/usercomponent/UserDetail.vue';
+  import {Toast} from 'vant';
   @Component({
     components: {UserDetail, NavBar}
   })
   export default class UserInfo extends Vue {
+    userInfo={}
+    $http: any;
 
+    async fetchUserInfo(){
+      try{
+        const res =  await this.$http.get('./user/'+localStorage.getItem('id'),{
+          headers:{
+            'Authorization': 'Bearer ' + localStorage.getItem('objtoken')
+          }
+        })
+        this.userInfo = res.data[0]
+      }catch(error){
+        Toast.fail('服务器维护中，请稍后再试。')
+      }
+    }
+  created(){
+    this.fetchUserInfo()
+  }
   }
 </script>
 
