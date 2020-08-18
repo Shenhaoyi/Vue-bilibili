@@ -1,6 +1,15 @@
 <template>
-  <div>
-    sadsad
+  <div class="nav-bar">
+    <div class="logo">
+      <img src="../assets/logo.png" alt="">
+    </div>
+    <div class="search">
+      <van-search class='van-search' placeholder="请输入搜索关键词" />
+    </div>
+    <div>
+      <img src="../assets/default_img.jpg" alt="">
+      <p>下载App</p>
+    </div>
   </div>
 </template>
 
@@ -15,5 +24,49 @@
 </script>
 
 <style lang="scss" scoped>
+  .nav-bar {
+    height: 12.5vw;
+    background: white;
+    display: flex;
 
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 110px;
+      img {
+        width: 80%;
+      }
+    }
+
+    .search{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .van-search{
+        padding-top:0;
+        padding-bottom:0;
+        border-radius: 3px;
+      }
+    }
+
+    div:nth-child(3) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 24px;
+        height: 24px;
+      }
+      p{
+        padding:5px 10px;
+        margin:0 5px;
+        min-width:70px;
+        background: #fb7299;
+        color:white;
+        font-size: 13px;
+        border-radius: 3px;
+      }
+    }
+  }
 </style>
