@@ -1,11 +1,12 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter, {RouteConfig} from 'vue-router';
+import Home from '../views/Home.vue';
 import Register from '@/views/Register.vue';
+import Login from '@/views/Login.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-  const routes: Array<RouteConfig> = [
+const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',
@@ -14,12 +15,17 @@ Vue.use(VueRouter)
   {//注册页面
     path: '/register',
     name: 'Register',
-    component:Register
+    component: Register
+  },
+  {//登录
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
-]
+];
 
 const router = new VueRouter({
   routes
-})
+});
 
-export default router
+export default router;
