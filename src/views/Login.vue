@@ -24,7 +24,7 @@
   import LoginTop from '@/components/common/LoginTop.vue';
   import LoginText from '@/components/common/LoginText.vue';
   import LoginBtn from '@/components/common/LoginBtn.vue';
-  import {Toast} from 'vant';
+  import { Toast } from 'vant';
 
   @Component({
     components: {LoginBtn, LoginText, LoginTop}
@@ -43,13 +43,13 @@
       //邢敏不用判断了
       if (rule1.test(this.user.username)) {
         if (rule2.test(this.user.password)) {
-          const res = await this.$http.post('/login', this.user);
-          Toast.success(res.data.msg);
-          localStorage.setItem('id', res.data.id);
-          localStorage.setItem('objtoken', res.data.token);
-          setTimeout(() => {
-            this.$router.push('/userinfo');
-          }, 1000);
+            const res = await this.$http.post('/login', this.user);
+            Toast.success(res.data.msg);
+            localStorage.setItem('id', res.data.id)
+            localStorage.setItem('objtoken', res.data.token)
+            setTimeout(()=>{
+              this.$router.push('/userinfo')
+            },1000)
         } else {
           Toast.fail('密码格式错误，请输入 6~16 位有效字符。');
         }

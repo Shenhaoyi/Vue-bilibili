@@ -49,7 +49,7 @@
             const res = await this.$http.post('/register', this.user);
             Toast.success(res.data.msg);
             localStorage.setItem('id', res.data.id);
-            localStorage.setItem('objtoken', res.data.token);
+            localStorage.setItem('objtoken', res.data.objtoken);
             setTimeout(() => {
               this.$router.push('/userinfo');
             }, 1000);
