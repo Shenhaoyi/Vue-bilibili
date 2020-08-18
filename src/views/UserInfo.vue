@@ -16,7 +16,7 @@
     components: {UserDetail, NavBar}
   })
   export default class UserInfo extends Vue {
-    userInfo = {};
+    userInfo?: UserInfo
     $http: any;
 
     async fetchUserInfo() {
