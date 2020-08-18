@@ -49,6 +49,11 @@
             try{
               const res = await this.$http.post('/register',this.user)
               Toast.success(res.data.msg)
+              localStorage.setItem('id', res.data.id)
+              localStorage.setItem('objtoken', res.data.objtoken)
+              setTimeout(()=>{
+                this.$router.push('/login')
+              },1000)
             }catch(error){
               Toast.fail('服务器维护中，请稍后再试。')
             }
