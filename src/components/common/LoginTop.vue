@@ -3,7 +3,9 @@
     <div class="login-top">
       <div></div>
       <div>{{middleTop}}</div>
-      <div></div>
+      <div>
+        <slot name="right"></slot>
+      </div>
     </div>
   </div>
 </template>
