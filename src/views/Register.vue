@@ -41,30 +41,26 @@
     $http: any;
 
     async registerSubmit() {
-      const rule1 = new RegExp("^.{3,16}$")
-      const rule2 = new RegExp("^.{6,16}$")
-      if(this.user.name){
-        if(rule1.test(this.user.username)){
-          if(rule2.test(this.user.password)){
-            try{
-              const res = await this.$http.post('/register',this.user)
-              Toast.success(res.data.msg)
-              localStorage.setItem('id', res.data.id)
-              localStorage.setItem('objtoken', res.data.objtoken)
-              setTimeout(()=>{
-                this.$router.push('/userinfo')
-              },1000)
-            }catch(error){
-              Toast.fail('服务器维护中，请稍后再试。')
-            }
-          }else{
-            Toast.fail('密码格式错误，请输入 6~16 位有效字符。')
+      const rule1 = new RegExp('^.{3,16}$');
+      const rule2 = new RegExp('^.{6,16}$');
+      if (this.user.name) {
+        if (rule1.test(this.user.username)) {
+          if (rule2.test(this.user.password)) {
+            const res = await this.$http.post('/register', this.user);
+            Toast.success(res.data.msg);
+            localStorage.setItem('id', res.data.id);
+            localStorage.setItem('objtoken', res.data.token);
+            setTimeout(() => {
+              this.$router.push('/userinfo');
+            }, 1000);
+          } else {
+            Toast.fail('密码格式错误，请输入 6~16 位有效字符。');
           }
-        }else{
-          Toast.fail('账号格式错误，请输入 3~16 位有效字符。')
+        } else {
+          Toast.fail('账号格式错误，请输入 3~16 位有效字符。');
         }
-      }else{
-        Toast.fail('姓名不能为空。')
+      } else {
+        Toast.fail('姓名不能为空。');
       }
     }
   }
