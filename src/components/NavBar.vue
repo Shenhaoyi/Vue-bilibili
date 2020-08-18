@@ -1,17 +1,15 @@
 <template>
   <div>
-    <NavBar></NavBar>
+    sadsad
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import NavBar from '@/components/NavBar.vue';
-  @Component({
-    components: {NavBar}
-  })
-  export default class UserInfo extends Vue {
+
+  @Component
+  export default class NavBar extends Vue {
 
   }
 </script>
