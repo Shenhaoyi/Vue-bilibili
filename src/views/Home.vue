@@ -60,7 +60,6 @@
         }
       });
       currentTab.list = res.data
-      console.log(this.category)
     }
 
   }
