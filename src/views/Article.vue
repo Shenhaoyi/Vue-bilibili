@@ -3,7 +3,7 @@
     <NavBar></NavBar>
     <div class="wrapper">
       <div class="video">
-        <video controls width="100%" :src="model.content" muted autoplay :poster="model.img">
+        <video controls width="100%" :src="model.content" autoplay :poster="model.img">
           资源找不到啦！
         </video>
       </div>
