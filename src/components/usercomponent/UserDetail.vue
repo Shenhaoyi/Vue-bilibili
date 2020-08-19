@@ -37,6 +37,11 @@
       <span>动态</span>
       <span>视频</span>
     </div>
+    <div class="bottom-wrapper">
+      <img class="bili-img" src="//s1.hdslb.com/bfs/static/jinkela/mstation-h5/asserts/noContent.png" alt="">
+      <p>Ta还没有投过稿~</p>
+      <p>快去发现新内容吧！</p>
+    </div>
   </div>
 </template>
 
@@ -46,7 +51,7 @@
 
   @Component
   export default class UserDetail extends Vue {
-    @Prop() userInfo: any
+    @Prop() userInfo: any;
 
   }
 </script>
@@ -57,8 +62,8 @@
 
     .part1 {
       display: flex;
-      padding-left:12px;
-      padding-right:12px;
+      padding-left: 12px;
+      padding-right: 12px;
 
       .user-img {
         border-radius: 50%;
@@ -92,8 +97,8 @@
       }
 
       .edit-data {
-        margin-top:10px;
-        padding:3px;
+        margin-top: 10px;
+        padding: 3px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -102,24 +107,39 @@
         border-radius: 5px;
       }
     }
-    .part2{
-      padding:12px;
-      .name-wrapper{
-        .name{
+
+    .part2 {
+      padding: 12px;
+
+      .name-wrapper {
+        .name {
           font-size: 4.8vw;
         }
       }
-      .brief-instr{
+
+      .brief-instr {
         font-size: 3.46667vw;
-        color:#999;
+        color: #999;
       }
     }
-    .tabs{
-      border-top:1px solid rgb(244,244,244);
-      padding:10px 12px;
-      span{
-        margin-right:32px;
-        font-size:3.44447vw;
+
+    .tabs {
+      border-top: 1.5/360*100vw solid rgb(244, 244, 244);
+      border-bottom: 1.5/360*100vw solid rgb(244, 244, 244);
+      padding: 10px 12px;
+
+      span {
+        margin-right: 32px;
+        font-size: 3.44447vw;
+      }
+    }
+
+    .bottom-wrapper {
+      padding: 22.66667vw 0 4.26667vw;
+      text-align: center;
+      .bili-img {
+        width: 74.66667vw;
+        margin-bottom: 4vw;
       }
     }
   }
