@@ -3,7 +3,7 @@
     <NavBar></NavBar>
     <van-tabs v-model="active" scrollspy sticky>
       <van-tab v-for="(item, index) in category" :key="index" :title="item.title">
-        {{ item.title }}
+        <Detail v-for="(itemDetail,indexDetail) in category[active].list" :key="indexDetail" :detail="itemDetail"></Detail>
       </van-tab>
     </van-tabs>
   </div>
@@ -13,9 +13,10 @@
   import Vue from 'vue';
   import {Component, Watch} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
+  import Detail from '@/views/Detail.vue';
 
   @Component({
-    components: {NavBar}
+    components: {Detail, NavBar}
   })
   export default class Home extends Vue {
     $http: any;
