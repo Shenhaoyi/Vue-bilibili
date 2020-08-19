@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div style="background: white;">
     <NavBar></NavBar>
     <van-tabs v-model="active" swipeable sticky>
       <van-tab v-for="(item, index) in category" :key="index" :title="item.title">
-        <Detail v-for="(itemDetail,indexDetail) in category[active].list" :key="indexDetail" :detail="itemDetail"></Detail>
+        <div class="detail-wrapper">
+          <Detail class="detail" v-for="(itemDetail,indexDetail) in category[active].list" :key="indexDetail" :detail="itemDetail"></Detail>
+        </div>
       </van-tab>
     </van-tabs>
   </div>
@@ -65,5 +67,13 @@
 </script>
 
 <style lang="scss" scoped>
-
+.detail-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  .detail{
+    width:45%;
+    margin:10px 0;
+  }
+}
 </style>

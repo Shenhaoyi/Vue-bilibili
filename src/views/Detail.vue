@@ -1,6 +1,7 @@
 <template>
   <div>
-    {{detail.name}}
+    <img :src="detail.img">
+    <p>{{detail.name}}</p>
   </div>
 </template>
 
@@ -17,4 +18,11 @@
 
 <style lang="scss" scoped>
 
+img{
+  width:100%;
+}
+  p{
+    font-size: 12/360*100vw;
+    margin:0;
+  }
 </style>
