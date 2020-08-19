@@ -1,14 +1,14 @@
 <template>
   <div class="nav-bar">
-    <div class="logo" @click="$router.push('/')">
+    <div class="logo" @click="handleHome">
       <img src="../../assets/logo.png" alt="">
     </div>
     <div class="search">
       <van-search class='van-search' placeholder="请输入搜索关键词" />
     </div>
     <div >
-      <img v-if="userInfo_img" :src='userInfo_img' @click="handleClick">
-      <img v-else src="@/assets/default_img.jpg" @click="handleClick">
+      <img v-if="userInfo_img" :src='userInfo_img' @click="handlePersonal">
+      <img v-else src="@/assets/default_img.jpg" @click="handlePersonal">
       <p>下载App</p>
     </div>
   </div>
@@ -22,7 +22,12 @@
   export default class NavBar extends Vue {
     @Prop() userInfo_img?: string
 
-    handleClick(){
+    handleHome(){
+      if(this.$router.currentRoute.path !=='/')
+        this.$router.push('/')
+    }
+
+    handlePersonal(){
       if(this.$router.currentRoute.path !=='/userinfo')
         this.$router.push('/userinfo')
     }

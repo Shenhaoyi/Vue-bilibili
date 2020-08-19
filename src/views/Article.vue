@@ -1,14 +1,16 @@
 <template>
   <div>
-    aasd
+    <NavBar></NavBar>
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-
-  @Component
+  import NavBar from '@/components/common/NavBar.vue';
+  @Component({
+    components: {NavBar}
+  })
   export default class Article extends Vue {
 
   }
