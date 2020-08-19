@@ -15,7 +15,7 @@
   import Vue from 'vue';
   import {Component, Watch} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
-  import Cover from '@/views/Cover.vue';
+  import Cover from '@/components/common/Cover.vue';
 
   @Component({
     components: {Cover, NavBar}
