@@ -3,7 +3,7 @@
     <NavBar></NavBar>
     <div class="wrapper">
       <div class="video">
-        <video controls width="100%" :src="model.content" preload :poster="model.img">
+        <video controls width="100%" :src="model.content" muted autoplay :poster="model.img">
           资源找不到啦！
         </video>
       </div>
@@ -34,16 +34,21 @@
         </div>
       </div>
     </div>
+
+    <div class="detail-wrapper">
+      <Cover class="detail" v-for="(itemDetail,indexDetail) in commendList" :key="indexDetail" :detail="itemDetail"></Cover>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component, Watch} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
+  import Cover from '@/components/common/Cover.vue';
 
   @Component({
-    components: {NavBar}
+    components: {Cover, NavBar}
   })
   export default class Article extends Vue {
     $http: any;
@@ -51,8 +56,15 @@
     //不给出category和userinfo会报错
     model = {category: {}, userinfo: {}};
     commendList = []
+    id?: number
 
     created() {
+      this.articleData();
+      this.commendData()
+    }
+
+    @Watch('$route.path')
+    onRouteChanged() {
       this.articleData();
       this.commendData()
     }
@@ -67,7 +79,6 @@
     async commendData(){
       const res = await this.$http.get('/commend');
       this.commendList = res.data
-      console.log(this.commendList)
     }
 
   }
@@ -81,11 +92,13 @@
 
       .info1 {
         .title {
+          padding:1vw 2vw;
           font-size: 3.2vw;
           color: #fb7299;
           line-height: 5.33333vw;
-          background-color: #fff;
+          background-color: #f4f4f4;;
           border-radius: 3.2vw;
+          /*border:1px solid red;*/
         }
 
         .name {
@@ -100,7 +113,7 @@
       }
 
       .info2 {
-        padding: 2.778vw;
+        padding: 2.778vw 0;
         display: flex;
         /*justify-content: flex-start;*/
         align-items: center;
@@ -113,6 +126,9 @@
           justify-content: flex-start;
           align-items: center;
           transform: translateY(-8%);
+          .user-icon{
+            padding-right:1vw;
+          }
         }
 
         .watch, .bullet, .date {
@@ -135,6 +151,16 @@
           align-items: center;
         }
       }
+    }
+  }
+
+  .detail-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .detail{
+      width:45%;
+      margin:10px 0;
     }
   }
 </style>
