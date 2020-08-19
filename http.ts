@@ -25,8 +25,10 @@ http.interceptors.response.use(function (response) {
   //重定向
   if(error.response.status === 401 || error.response.status === 402){
     router.push('/login').then(() => {
-      Toast.fail('请重新登录！')
+      Toast.fail('请重新登录')
     })
+  }else if(error.response.status === 500){
+    Toast.fail('服务器内部错误')
   }else{
     Toast.fail('未知错误')
   }
