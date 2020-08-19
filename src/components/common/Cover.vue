@@ -1,5 +1,5 @@
 <template>
-  <div @click="$router.push('/article/'+detail.id)">
+  <div @click="handlePush">
     <div class="father">
       <img :src="detail.img">
       <div class="wrapper">
@@ -26,6 +26,12 @@
   export default class Detail extends Vue {
     @Prop() detail: any;
 
+    handlePush(){
+      //当前的路由和目标路由不一样才跳转
+      if(this.$route.path !== '/article/'+this.detail.id){
+        this.$router.push('/article/'+this.detail.id)
+      }
+    }
   }
 </script>
 
