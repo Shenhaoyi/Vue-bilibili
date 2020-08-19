@@ -6,6 +6,7 @@ import Login from '@/views/Login.vue';
 import UserInfo from '@/views/UserInfo.vue';
 import {Toast} from 'vant';
 import Edit from '@/views/Edit.vue';
+import Article from '@/views/Article.vue';
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,11 @@ const routes: Array<RouteConfig> = [
     meta: {
       isToken: true
     }
+  },
+  {//文章详情页
+    path: '/article/:id', //设置成动态路径
+    name: 'Article',
+    component: Article
   },
 ];
 

@@ -1,8 +1,7 @@
 <template>
-  <div @click="$router.push('/detail/'+detail.id)">
+  <div @click="$router.push('/article/'+detail.id)">
     <div class="father">
       <img :src="detail.img">
-
       <div class="wrapper">
         <span class="video">
         <van-icon class="icon" name="play-circle-o"/>
