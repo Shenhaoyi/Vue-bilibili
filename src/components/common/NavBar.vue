@@ -44,7 +44,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 110px;
+      width: 110/360*100vw;
       img {
         width: 80%;
       }
@@ -57,7 +57,7 @@
       .van-search{
         padding-top:0;
         padding-bottom:0;
-        border-radius: 3px;
+        border-radius: 3/360*100vw;
       }
     }
 
@@ -66,18 +66,18 @@
       justify-content: center;
       align-items: center;
       img {
-        width: 24px;
-        height: 24px;
+        width: 24/360*100vw;
+        height: 24/360*100vw;
         border-radius: 50%;
       }
       p{
-        padding:5px 10px;
-        margin:0 5px;
-        min-width:70px;
+        padding:5/360*100vw 10/360*100vw;
+        margin:0 5/360*100vw;
+        min-width:70/360*100vw;
         background: #fb7299;
         color:white;
-        font-size: 13px;
-        border-radius: 3px;
+        font-size: 13/360*100vw;
+        border-radius: 3/360*100vw;
       }
     }
   }
