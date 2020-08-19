@@ -48,11 +48,13 @@
           if (rule2.test(this.user.password)) {
             const res = await this.$http.post('/register', this.user);
             Toast.success(res.data.msg);
-            localStorage.setItem('id', res.data.id);
-            localStorage.setItem('objtoken', res.data.objtoken);
-            setTimeout(() => {
-              this.$router.push('/userinfo');
-            }, 1000);
+            if(res.data.code === 200){
+              localStorage.setItem('id', res.data.id);
+              localStorage.setItem('objtoken', res.data.objtoken);
+              setTimeout(() => {
+                this.$router.push('/userinfo');
+              }, 1000);
+            }
           } else {
             Toast.fail('密码格式错误，请输入 6~16 位有效字符。');
           }
