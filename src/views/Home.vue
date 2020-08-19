@@ -4,7 +4,7 @@
     <van-tabs v-model="active" swipeable sticky>
       <van-tab v-for="(item, index) in category" :key="index" :title="item.title">
         <div class="detail-wrapper">
-          <Detail class="detail" v-for="(itemDetail,indexDetail) in category[active].list" :key="indexDetail" :detail="itemDetail"></Detail>
+          <Cover class="detail" v-for="(itemDetail,indexDetail) in category[active].list" :key="indexDetail" :detail="itemDetail"></Cover>
         </div>
       </van-tab>
     </van-tabs>
@@ -15,10 +15,10 @@
   import Vue from 'vue';
   import {Component, Watch} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
-  import Detail from '@/views/Detail.vue';
+  import Cover from '@/views/Cover.vue';
 
   @Component({
-    components: {Detail, NavBar}
+    components: {Cover, NavBar}
   })
   export default class Home extends Vue {
     $http: any;
