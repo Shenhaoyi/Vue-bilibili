@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar></NavBar>
-    <van-tabs v-model="active" sticky>
+    <van-tabs v-model="active" swipeable sticky>
       <van-tab v-for="(item, index) in category" :key="index" :title="item.title">
         <Detail v-for="(itemDetail,indexDetail) in category[active].list" :key="indexDetail" :detail="itemDetail"></Detail>
       </van-tab>
