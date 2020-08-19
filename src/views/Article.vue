@@ -50,15 +50,24 @@
 
     //不给出category和userinfo会报错
     model = {category: {}, userinfo: {}};
+    commendList = []
 
     created() {
       this.articleData();
+      this.commendData()
     }
 
+    //当前视屏的数据
     async articleData() {
       const res = await this.$http.get(this.$route.path);
       this.model = res.data[0];
-      console.log(this.model);
+    }
+
+    //推荐数据
+    async commendData(){
+      const res = await this.$http.get('/commend');
+      this.commendList = res.data
+      console.log(this.commendList)
     }
 
   }
