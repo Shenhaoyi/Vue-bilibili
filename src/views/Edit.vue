@@ -49,7 +49,7 @@
     components: {EditItem, NavBar}
   })
   export default class Edit extends Vue {
-    userInfo = {};
+    userInfo: any;
     $http: any;
 
     showName = false; //通过子组件的点击事件来修改
