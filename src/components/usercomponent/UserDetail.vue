@@ -29,7 +29,7 @@
         <span></span>
       </div>
       <div>
-        <span class="brief-instr" v-if="userInfo.user_decs">{{userInfo.user_decs}}</span>
+        <span class="brief-instr" v-if="userInfo.user_desc">{{userInfo.user_desc}}</span>
         <span class="brief-instr" v-else>这个人很神秘，神秘都没写。</span>
       </div>
     </div>
