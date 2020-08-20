@@ -26,20 +26,20 @@
           </div>
         </div>
         <div class="info3">
-          <span class="icon">
-            <van-icon size="7vw" name="good-job"/>点赞
+          <span :class="['icon',likeFlag?'like':'']">
+            <van-icon size="7vw" name="good-job" @click="handleLike"/>点赞
           </span>
-          <span class="icon">
-            <van-icon size="7vw" name="star"/>收藏
+          <span :class="['icon',collectFlag?'collect':'']">
+            <van-icon size="7vw" name="star" @click="handleCollect"/>收藏
           </span>
-          <span class="icon">
+          <span class="icon share" @click="showShare = true">
             <van-icon size='7vw' name="share"/>分享
           </span>
         </div>
       </div>
     </div>
 
-    <van-tabs class="tabs" v-model="active">
+    <van-tabs class="tabs" v-model="active" color="#fb7299" title-active-color="#fb7299">
       <van-tab title="相关推荐">
         <div class="detail-wrapper">
           <Cover class="detail" v-for="(itemDetail,indexDetail) in commendList" :key="indexDetail"
@@ -62,6 +62,14 @@
         </div>
       </van-tab>
     </van-tabs>
+
+    <!--    分享-->
+    <van-share-sheet
+      v-model="showShare"
+      title="立即分享给好友"
+      :options="options"
+      @select="onSelect"
+    />
 
   </div>
 </template>
@@ -98,7 +106,21 @@
       article_id: ''
     };
 
+    //一变化就重新请求评论数据
     commentFetchFlag = false;
+
+    likeFlag = false;
+    collectFlag = false;
+
+    //分享数据
+    showShare = false;
+    options = [
+      {name: '微信', icon: 'wechat'},
+      {name: '微博', icon: 'weibo'},
+      {name: '复制链接', icon: 'link'},
+      {name: '分享海报', icon: 'poster'},
+      {name: '二维码', icon: 'qrcode'},
+    ];
 
     created() {
       this.articleData();
@@ -155,6 +177,23 @@
       }
     }
 
+    handleLike(){
+      this.likeFlag=!this.likeFlag
+      Toast.success(this.likeFlag?'点赞成功':'取消成功')
+    }
+
+    handleCollect(){
+      this.collectFlag=!this.collectFlag
+      Toast.success(this.collectFlag?'收藏成功':'取消成功')
+    }
+
+    //分享操作
+    onSelect(option: any) {
+      Toast(option.name);
+      /* eslint-disable */
+      this.showShare = false;
+    }
+
   }
 </script>
 
@@ -172,7 +211,6 @@
           line-height: 5.33333vw;
           background-color: #f4f4f4;;
           border-radius: 3.2vw;
-          /*border:1px solid red;*/
         }
 
         .name {
@@ -225,6 +263,10 @@
           justify-content: center;
           align-items: center;
         }
+
+        .like, .collect, .share {
+          color: #fb7299;
+        }
       }
     }
   }
@@ -247,7 +289,7 @@
     .inputComment {
       border-top: 1.5/360*100vw solid rgb(244, 244, 244);
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
       padding: 1vw 3vw;
 
@@ -258,6 +300,20 @@
           width: 30/360*100vw;
           height: 30/360*100vw;
           border-radius: 50%;
+        }
+      }
+
+      label {
+        flex: 1;
+
+        input {
+          border: none;
+          width: 100%;
+          outline: none;
+          padding: 2vw 3vw;
+          border-radius: 2vw;
+          background: rgb(244, 244, 244);
+          font-size: 13/360*100vw;
         }
       }
 
