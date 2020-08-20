@@ -18,7 +18,10 @@
             <span class="text">获赞</span>
           </p>
         </div>
-        <div class="edit-data" @click="$router.push('/edit')">
+        <div v-if="uperFlag" :class="['edit-data', follow?'follow':'']" @click="handleFollow">
+          关注
+        </div>
+        <div v-else class="edit-data" @click="$router.push('/edit')">
           编辑资料
         </div>
       </div>
@@ -33,11 +36,11 @@
         <span class="brief-instr" v-else>这个人很神秘，神秘都没写。</span>
       </div>
     </div>
-    <div class="tabs">
+    <div v-if="!uperFlag" class="tabs">
       <span>动态</span>
       <span>视频</span>
     </div>
-    <div class="bottom-wrapper">
+    <div v-if="!uperFlag" class="bottom-wrapper">
       <img class="bili-img" src="//s1.hdslb.com/bfs/static/jinkela/mstation-h5/asserts/noContent.png" alt="">
       <p>Ta还没有投过稿~</p>
       <p>快去发现新内容吧！</p>
@@ -48,10 +51,19 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
+  import { Toast } from 'vant';
 
   @Component
   export default class UserDetail extends Vue {
     @Prop() userInfo!: any;
+    @Prop() uperFlag!: any;
+    //是否关注
+    follow=false
+
+    handleFollow(){
+      this.follow=!this.follow
+      Toast.success(this.follow?'关注成功':'取消成功')
+    }
 
   }
 </script>
@@ -105,6 +117,10 @@
         border: 1px solid #fb7a9f;
         color: #fb7a9f;
         border-radius: 5px;
+      }
+      .follow{
+        color: white;
+        background: #fb7a9f;
       }
     }
 

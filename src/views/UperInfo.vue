@@ -2,7 +2,9 @@
   <div class="user-info">
     <NavBar :user-info_img="userInfo.user_img"></NavBar>
     <img src="../assets/bannerTop_new.png" class="background" alt="">
-    <UserDetail :userInfo="userInfo"></UserDetail>
+    <UserDetail :uperFlag="true" :userInfo="uperInfo"></UserDetail>
+    <div class="back" @click="$router.back()">返回</div>
+
   </div>
 </template>
 
@@ -16,7 +18,9 @@
     components: {UserDetail, NavBar}
   })
   export default class UperInfo extends Vue {
+    uperInfo ={}
     userInfo ={}
+    model={}
     $http: any;
 
     async fetchUserInfo() {
@@ -26,6 +30,13 @@
 
     created() {
       this.fetchUserInfo();
+      this.articleData();
+    }
+
+    //当前视屏的数据
+    async articleData() {
+      const res = await this.$http.get('/article/'+this.$route.params.id);
+      this.uperInfo = res.data[0].userinfo
     }
   }
 </script>
@@ -36,6 +47,17 @@
       height: 100px;
       width: 100%;
     }
+  }
+
+  .back{
+    margin-top: 6.3333vw;
+    background: #fb7299;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4vw;
+    color: #fff;
+    padding: 2.66667vw;
   }
 
 </style>
