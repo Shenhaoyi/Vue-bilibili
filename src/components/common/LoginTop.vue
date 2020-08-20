@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="login-top">
-      <div></div>
+      <div class="logo" @click="$router.push('/')">
+        <img src="../../assets/logo.png" alt="">
+      </div>
       <div>{{middleTop}}</div>
       <div>
         <slot name="right"></slot>
@@ -25,6 +27,18 @@
   height:50px;
   background: white;
   display: flex;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110/360*100vw;
+
+    img {
+      width: 80%;
+    }
+  }
+
   > div{
     flex:1;
     display: flex;
