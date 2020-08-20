@@ -13,7 +13,8 @@
           <span class="name">{{model.name}}</span>
         </div>
         <div class="info2">
-          <div>
+
+          <div @click="$router.push('/uperinfo/'+$route.params.id)">
             <span class="user-name">
             <van-icon class="user-icon" name="https://b.yzcdn.cn/vant/icon-demo-1126.png"/>
             {{model.userinfo.name}}
