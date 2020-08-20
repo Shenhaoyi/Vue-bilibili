@@ -51,7 +51,13 @@
     components: {EditItem, NavBar}
   })
   export default class Edit extends Vue {
-    userInfo: any = {};
+    /* eslint-disable */
+    userInfo = {
+      user_img:'',
+      name:'',
+      user_desc:'',
+      gender:''
+    };
     $http: any;
 
     showName = false; //通过子组件的点击事件来修改
@@ -68,7 +74,6 @@
 
     async selectorUser() {
       const res = await this.$http.get('./user/' + localStorage.getItem('id'));
-      /* eslint-disable */
       this.userInfo = res.data[0];
     }
 
@@ -76,11 +81,11 @@
       this.selectorUser();
     }
 
-    async afterRead(file: any) {
+    /* eslint-disable */
+    async afterRead(file) {
       const formData = new FormData();
       formData.append('file', file.file);
       const res = await this.$http.post('/upload', formData);
-      /* eslint-disable */
       this.userInfo.user_img = res.data.url;
       await this.userInfoUpdate();
     }
@@ -94,7 +99,6 @@
 
     async confirmName() {
       if (this.name) {
-        /* eslint-disable */
         this.userInfo.name = this.name;
         this.name = '';
         await this.userInfoUpdate();
@@ -105,16 +109,15 @@
 
     async confirmContent() {
       if (this.content) {
-        /* eslint-disable */
         this.userInfo.user_desc = this.content;
         this.content = '';
         await this.userInfoUpdate();
       }
     }
 
-    async onGenderSelect(data: any) {
+    /* eslint-disable */
+    async onGenderSelect(data) {
       this.showGender = false;
-      /* eslint-disable */
       this.userInfo.gender = data.name;
       await this.userInfoUpdate();
     }

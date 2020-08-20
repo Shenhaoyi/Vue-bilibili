@@ -197,9 +197,9 @@
     }
 
     //分享操作
-    onSelect(option: any) {
+    /* eslint-disable */
+    onSelect(option) {
       Toast(option.name);
-      /* eslint-disable */
       this.showShare = false;
     }
 

@@ -22,7 +22,7 @@
   export default class Comment extends Vue {
     $http: any;
 
-    @Prop() commentFetchFlag: any;
+    @Prop() commentFetchFlag?: boolean
 
     @Watch('commentFetchFlag')
     onFlagChanged() {
@@ -38,7 +38,6 @@
     async commentData() {
       const res = await this.$http.get('/comment/' + this.$route.params.id);
       //只取一级评论
-      /* eslint-disable */
       // filter(item=> item.parent_id === null).sort((a,b)=>{ return b.comment_date - a.comment_date}).slice(0,20)
       const len = res.data.length;
       this.comment = res.data.slice(len - 20);
