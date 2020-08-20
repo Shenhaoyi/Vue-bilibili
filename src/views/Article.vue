@@ -13,13 +13,17 @@
           <span class="name">{{model.name}}</span>
         </div>
         <div class="info2">
-          <span class="user-name">
+          <div>
+            <span class="user-name">
             <van-icon class="user-icon" name="https://b.yzcdn.cn/vant/icon-demo-1126.png"/>
             {{model.userinfo.name}}
           </span>
-          <span class="watch">97.8万观看</span>
-          <span class="bullet">1538弹幕</span>
-          <span class="date">{{model.date}}</span>
+          </div>
+          <div>
+            <span class="watch">97.8万观看</span>
+            <span class="bullet">1538弹幕</span>
+            <span class="date">{{model.date}}</span>
+          </div>
         </div>
         <div class="info3">
           <span class="icon">
@@ -35,9 +39,17 @@
       </div>
     </div>
 
-    <div class="detail-wrapper">
-      <Cover class="detail" v-for="(itemDetail,indexDetail) in commendList" :key="indexDetail" :detail="itemDetail"></Cover>
-    </div>
+    <van-tabs v-model="active">
+      <van-tab title="相关推荐">
+        <div class="detail-wrapper">
+          <Cover class="detail" v-for="(itemDetail,indexDetail) in commendList" :key="indexDetail" :detail="itemDetail"></Cover>
+        </div>
+      </van-tab>
+      <van-tab title="评论(12)">
+        内容 2
+      </van-tab>
+    </van-tabs>
+
   </div>
 </template>
 
@@ -55,8 +67,10 @@
 
     //不给出category和userinfo会报错
     model = {category: {}, userinfo: {}};
-    commendList = []
-    id?: number
+    commendList = [] //推荐数据
+
+    //评论
+    active = 0
 
     created() {
       this.articleData();
@@ -113,9 +127,9 @@
       }
 
       .info2 {
-        padding: 2.778vw 0;
+        padding: 3.778vw 0;
         display: flex;
-        /*justify-content: flex-start;*/
+        justify-content: space-between;
         align-items: center;
 
         .user-name {
