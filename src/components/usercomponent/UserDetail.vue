@@ -25,11 +25,11 @@
     </div>
     <div class="part2">
       <div class="name-wrapper">
-        <span class="name">{{userInfo.name || '用户未登录'}}</span>
+        <span class="name">{{userInfo.name}}</span>
         <span></span>
       </div>
       <div>
-        <span class="brief-instr" v-if="userInfo.user_decs">这个人很神秘，神秘都没写。</span>
+        <span class="brief-instr" v-if="userInfo.user_decs">{{userInfo.user_decs}}</span>
         <span class="brief-instr" v-else>这个人很神秘，神秘都没写。</span>
       </div>
     </div>
@@ -51,7 +51,10 @@
 
   @Component
   export default class UserDetail extends Vue {
-    @Prop() userInfo: any;
+    @Prop() userInfo!: any;
+    mounted(){
+      console.log(this.userInfo.user_desc)
+    }
 
   }
 </script>
