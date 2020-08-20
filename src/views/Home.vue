@@ -1,6 +1,6 @@
 <template>
   <div style="background: white;">
-    <NavBar></NavBar>
+    <NavBar @firstPage="active=0"></NavBar>
     <van-tabs v-model="active" swipeable sticky>
       <van-tab v-for="(item, index) in category" :key="index" :title="item.title">
         <div class="detail-wrapper">
