@@ -61,8 +61,12 @@
     follow=false
 
     handleFollow(){
-      this.follow=!this.follow
-      Toast.success(this.follow?'关注成功':'取消成功')
+      if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
+        this.follow=!this.follow
+        Toast.success(this.follow?'关注成功':'取消成功')
+      }else{
+        Toast.fail('请先登录')
+      }
     }
 
   }
