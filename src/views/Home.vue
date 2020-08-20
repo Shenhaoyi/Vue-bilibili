@@ -1,6 +1,6 @@
 <template>
-  <div style="background: white;">
-    <NavBar @firstPage="active=0"></NavBar>
+  <div style="background: white;" >
+    <NavBar @firstPage="active=0" :user-info_img="userInfo.user_img"></NavBar>
     <van-tabs v-model="active" swipeable sticky>
       <van-tab v-for="(item, index) in category" :key="index" :title="item.title">
         <div class="detail-wrapper">
@@ -31,8 +31,18 @@
     active = 0;//与导航栏的选中的下标同步
     category = []; //所有tabs
 
+    userInfo ={}
+
+    async fetchUserInfo() {
+      if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
+        const res = await this.$http.get('./user/' + localStorage.getItem('id'));
+        this.userInfo = res.data[0];
+      }
+    }
+
     mounted() {
       this.selectCategory();
+      this.fetchUserInfo()
     }
 
     //获取tabs数据并进行改造
