@@ -58,6 +58,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   //如果是需要验证的，并且没有token或者 id的，需要重新登录
+  //只能验证是由有token和id，错误的验证不了
   if (to.meta.isToken && (!localStorage.getItem('id') || !localStorage.getItem('objtoken'))) {
       router.push('/login').then(() => {
         Toast.fail('请重新登录！');
