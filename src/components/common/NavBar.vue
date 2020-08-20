@@ -8,7 +8,7 @@
     </div>
     <div >
       <img v-if="userInfo_img" :src='userInfo_img' @click="handlePersonal">
-      <img v-else src="@/assets/default_img.jpg" @click="handlePersonal">
+      <img v-else src="//s1.hdslb.com/bfs/static/jinkela/long/images/login.png@48w_48h_1c.png" @click="handlePersonal">
       <p>下载App</p>
     </div>
   </div>
