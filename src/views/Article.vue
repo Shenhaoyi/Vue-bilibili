@@ -27,7 +27,7 @@
         </div>
         <div class="info3">
           <span class="icon">
-            <van-icon size="7vw"  name="good-job"/>点赞
+            <van-icon size="7vw" name="good-job"/>点赞
           </span>
           <span class="icon">
             <van-icon size="7vw" name="star"/>收藏
@@ -42,19 +42,23 @@
     <van-tabs class="tabs" v-model="active">
       <van-tab title="相关推荐">
         <div class="detail-wrapper">
-          <Cover class="detail" v-for="(itemDetail,indexDetail) in commendList" :key="indexDetail" :detail="itemDetail"></Cover>
+          <Cover class="detail" v-for="(itemDetail,indexDetail) in commendList" :key="indexDetail"
+                 :detail="itemDetail"></Cover>
         </div>
       </van-tab>
-      <van-tab title="评论(0)">
+      <van-tab title="最新评论(20)">
         <div class="inputComment">
           <div class="user-img-wrapper">
             <img class='user-img' v-if="userInfo.user_img" :src='userInfo.user_img' alt="">
             <img class='user-img' v-else src="@/assets/default_img.jpg" alt="">
           </div>
           <label>
-            <input type="text" placeholder="说点什么吧">
+            <input type="text" v-model="myComment" placeholder="说点什么吧">
           </label>
           <button @click="inputComment">发表</button>
+        </div>
+        <div class="comment">
+          <Comment :commentFetchFlag="commentFetchFlag"></Comment>
         </div>
       </van-tab>
     </van-tabs>
@@ -67,32 +71,39 @@
   import {Component, Watch} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
   import Cover from '@/components/common/Cover.vue';
-  import { Toast } from 'vant';
+  import {Toast} from 'vant';
+  import Comment from '@/components/comment/Comment.vue';
 
   @Component({
-    components: {Cover, NavBar}
+    components: {Comment, Cover, NavBar}
   })
   export default class Article extends Vue {
     $http: any;
 
     //不给出category和userinfo会报错
     model = {category: {}, userinfo: {}};
-    commendList = [] //推荐数据
+    commendList = []; //推荐数据
 
     //评论
-    active = 0
-    userInfo={}
+    active = 0;
+    userInfo = {};
+
+    //我的评论
+    myComment = '';
+    postcom = {};
+
+    commentFetchFlag=false
 
     created() {
       this.articleData();
-      this.commendData()
-      this.userInfoData()
+      this.commendData();
+      this.userInfoData();
     }
 
     @Watch('$route.path')
     onRouteChanged() {
       this.articleData();
-      this.commendData()
+      this.commendData();
     }
 
     //当前视屏的数据
@@ -102,26 +113,41 @@
     }
 
     //推荐数据
-    async commendData(){
+    async commendData() {
       const res = await this.$http.get('/commend');
-      this.commendList = res.data
+      this.commendList = res.data;
     }
 
     //推荐数据
-    async userInfoData(){
+    async userInfoData() {
       //本地有token才获取用户的信息
-      if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
+      if (localStorage.getItem('id') && localStorage.getItem('objtoken')) {
         const res = await this.$http.get('./user/' + localStorage.getItem('id'));
-        this.userInfo  = res.data[0];
-        console.log(this.userInfo)
+        this.userInfo = res.data[0];
+        console.log(this.userInfo);
       }
     }
 
-    inputComment(){
-      if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
-        console.log(1)
-      }else{
-        Toast.fail('登录后才能发表评论')
+    async inputComment() {
+      if (localStorage.getItem('id') && localStorage.getItem('objtoken')) {
+        if (this.myComment.length <= 0) {
+          Toast.fail('评论不能为空');
+          return;
+        }
+        /* eslint-disable */
+        this.postcom.comment_date = new Date().toJSON().substring(5, 10);
+        this.postcom.comment_content = this.myComment;
+        this.postcom.parent_id = null;
+        this.postcom.article_id = this.$route.params.id;
+        console.log(this.postcom)
+        const result = await this.$http.post('/comment_post/' + localStorage.getItem('id'), this.postcom);
+        if(result.status == 200) {
+          Toast.success('评论发表成功')
+          this.myComment =''
+          this.commentFetchFlag = !this.commentFetchFlag
+        }
+      } else {
+        Toast.fail('登录后才能发表评论');
       }
     }
 
@@ -136,7 +162,7 @@
 
       .info1 {
         .title {
-          padding:1vw 2vw;
+          padding: 1vw 2vw;
           font-size: 3.2vw;
           color: #fb7299;
           line-height: 5.33333vw;
@@ -170,8 +196,9 @@
           justify-content: flex-start;
           align-items: center;
           transform: translateY(-8%);
-          .user-icon{
-            padding-right:1vw;
+
+          .user-icon {
+            padding-right: 1vw;
           }
         }
 
@@ -198,51 +225,55 @@
     }
   }
 
-  .tabs{
+  .tabs {
     background: white;
-    .detail-wrapper{
+
+    .detail-wrapper {
       border-top: 1.5/360*100vw solid rgb(244, 244, 244);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
-      .detail{
-        width:45%;
-        margin:10px 0;
+
+      .detail {
+        width: 45%;
+        margin: 10px 0;
       }
     }
 
-    .inputComment{
+    .inputComment {
       border-top: 1.5/360*100vw solid rgb(244, 244, 244);
       display: flex;
       justify-content: flex-start;
       align-items: center;
       padding: 1vw 3vw;
-      .user-img-wrapper{
-        margin-right:2vw;
-        .user-img{
+
+      .user-img-wrapper {
+        margin-right: 2vw;
+
+        .user-img {
           width: 30/360*100vw;
           height: 30/360*100vw;
           border-radius: 50%;
         }
       }
 
-      input{
-        border:none;
+      input {
+        border: none;
         outline: none;
-        padding:2vw 3vw;
+        padding: 2vw 3vw;
         border-radius: 2vw;
         background: rgb(244, 244, 244);
         font-size: 13/360*100vw;
       }
 
-      button{
-        border:none;
+      button {
+        border: none;
         outline: none;
         background: #fb7299;
         border-radius: 2vw;
-        margin-left:2vw;
-        padding:1vw 2vw;
-        color:white;
+        margin-left: 2vw;
+        padding: 1vw 2vw;
+        color: white;
         font-size: 13/360*100vw;
       }
 
