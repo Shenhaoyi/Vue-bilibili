@@ -7,6 +7,7 @@ import UserInfo from '@/views/UserInfo.vue';
 import {Toast} from 'vant';
 import Edit from '@/views/Edit.vue';
 import Article from '@/views/Article.vue';
+import UperInfo from '@/views/UperInfo.vue';
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,11 @@ const routes: Array<RouteConfig> = [
     meta: {
       isToken: true
     }
+  },
+  {//up主信息页
+    path: '/uperinfo/:id',
+    name: 'UperInfo',
+    component: UperInfo,
   },
   {//编辑页面
     path: '/edit',
