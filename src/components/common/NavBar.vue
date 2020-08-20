@@ -23,8 +23,11 @@
     @Prop() userInfo_img?: string
 
     handleHome(){
-      if(this.$router.currentRoute.path !=='/')
+      if(this.$router.currentRoute.path !=='/'){
         this.$router.push('/')
+      }else{
+        this.$emit('firstPage')
+      }
     }
 
     handlePersonal(){
