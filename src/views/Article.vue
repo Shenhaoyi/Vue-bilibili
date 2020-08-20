@@ -46,7 +46,7 @@
                  :detail="itemDetail"></Cover>
         </div>
       </van-tab>
-      <van-tab title="最新评论(20)">
+      <van-tab title="最新评论">
         <div class="inputComment">
           <div class="user-img-wrapper">
             <img class='user-img' v-if="userInfo.user_img" :src='userInfo.user_img' alt="">
