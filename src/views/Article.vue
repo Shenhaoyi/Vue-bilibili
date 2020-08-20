@@ -1,9 +1,9 @@
 <template>
   <div>
-    <NavBar></NavBar>
+    <NavBar :userInfo_img="userInfo.user_img"></NavBar>
     <div class="wrapper">
       <div class="video">
-        <video controls width="100%" :src="model.content" autoplay :poster="model.img">
+        <video controls width="100%" :src="model.content" preload :poster="model.img">
           资源找不到啦！
         </video>
       </div>
@@ -39,14 +39,23 @@
       </div>
     </div>
 
-    <van-tabs v-model="active">
+    <van-tabs class="tabs" v-model="active">
       <van-tab title="相关推荐">
         <div class="detail-wrapper">
           <Cover class="detail" v-for="(itemDetail,indexDetail) in commendList" :key="indexDetail" :detail="itemDetail"></Cover>
         </div>
       </van-tab>
-      <van-tab title="评论(12)">
-        内容 2
+      <van-tab title="评论(0)">
+        <div class="inputComment">
+          <div class="user-img-wrapper">
+            <img class='user-img' v-if="userInfo.user_img" :src='userInfo.user_img' alt="">
+            <img class='user-img' v-else src="@/assets/default_img.jpg" alt="">
+          </div>
+          <label>
+            <input type="text" placeholder="说点什么吧">
+          </label>
+          <button @click="inputComment">发表</button>
+        </div>
       </van-tab>
     </van-tabs>
 
@@ -58,6 +67,7 @@
   import {Component, Watch} from 'vue-property-decorator';
   import NavBar from '@/components/common/NavBar.vue';
   import Cover from '@/components/common/Cover.vue';
+  import { Toast } from 'vant';
 
   @Component({
     components: {Cover, NavBar}
@@ -71,10 +81,12 @@
 
     //评论
     active = 0
+    userInfo={}
 
     created() {
       this.articleData();
       this.commendData()
+      this.userInfoData()
     }
 
     @Watch('$route.path')
@@ -93,6 +105,24 @@
     async commendData(){
       const res = await this.$http.get('/commend');
       this.commendList = res.data
+    }
+
+    //推荐数据
+    async userInfoData(){
+      //本地有token才获取用户的信息
+      if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
+        const res = await this.$http.get('./user/' + localStorage.getItem('id'));
+        this.userInfo  = res.data[0];
+        console.log(this.userInfo)
+      }
+    }
+
+    inputComment(){
+      if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
+        console.log(1)
+      }else{
+        Toast.fail('登录后才能发表评论')
+      }
     }
 
   }
@@ -168,13 +198,56 @@
     }
   }
 
-  .detail-wrapper{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    .detail{
-      width:45%;
-      margin:10px 0;
+  .tabs{
+    background: white;
+    .detail-wrapper{
+      border-top: 1.5/360*100vw solid rgb(244, 244, 244);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      .detail{
+        width:45%;
+        margin:10px 0;
+      }
     }
+
+    .inputComment{
+      border-top: 1.5/360*100vw solid rgb(244, 244, 244);
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1vw 3vw;
+      .user-img-wrapper{
+        margin-right:2vw;
+        .user-img{
+          width: 30/360*100vw;
+          height: 30/360*100vw;
+          border-radius: 50%;
+        }
+      }
+
+      input{
+        border:none;
+        outline: none;
+        padding:2vw 3vw;
+        border-radius: 2vw;
+        background: rgb(244, 244, 244);
+        font-size: 13/360*100vw;
+      }
+
+      button{
+        border:none;
+        outline: none;
+        background: #fb7299;
+        border-radius: 2vw;
+        margin-left:2vw;
+        padding:1vw 2vw;
+        color:white;
+        font-size: 13/360*100vw;
+      }
+
+    }
+
   }
+
 </style>
