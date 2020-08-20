@@ -90,9 +90,15 @@
 
     //我的评论
     myComment = '';
-    postcom = {};
+    /* eslint-disable */
+    postcom = {
+      comment_date: '',
+      comment_content: '',
+      parent_id: null,
+      article_id: ''
+    };
 
-    commentFetchFlag=false
+    commentFetchFlag = false;
 
     created() {
       this.articleData();
@@ -139,10 +145,10 @@
         this.postcom.parent_id = null;
         this.postcom.article_id = this.$route.params.id;
         const result = await this.$http.post('/comment_post/' + localStorage.getItem('id'), this.postcom);
-        if(result.status == 200) {
-          Toast.success('评论发表成功')
-          this.myComment =''
-          this.commentFetchFlag = !this.commentFetchFlag
+        if (result.status == 200) {
+          Toast.success('评论发表成功');
+          this.myComment = '';
+          this.commentFetchFlag = !this.commentFetchFlag;
         }
       } else {
         Toast.fail('登录后才能发表评论');
