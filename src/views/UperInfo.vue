@@ -29,7 +29,9 @@
     }
 
     created() {
-      this.fetchUserInfo();
+      if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
+        this.fetchUserInfo();
+      }
       this.articleData();
     }
 
