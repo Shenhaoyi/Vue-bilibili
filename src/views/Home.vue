@@ -8,6 +8,11 @@
         </div>
       </van-tab>
     </van-tabs>
+    <div class="none">
+      <span>
+        没有了~
+      </span>
+    </div>
   </div>
 </template>
 
@@ -37,7 +42,7 @@
       this.category = res.data.map((item: any) => {
         item.list = [];
         item.page=0; //默认第一页
-        item.pagesize =10; //每页显示10个数据
+        item.pagesize =20; //每页显示20个数据
         return item;
       });
       // 同时需要初始化 currentTab 的数据,因为watch 不知道active的第一次变化，知道也获取不到this.category
@@ -74,5 +79,9 @@
     width:45%;
     margin:10px 0;
   }
+}
+.none {
+  padding: 5vw 0;
+  text-align: center;
 }
 </style>
