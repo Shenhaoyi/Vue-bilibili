@@ -13,6 +13,12 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
 
+//懒加载模块
+import { Lazyload } from 'vant';
+Vue.use(Lazyload, {
+  lazyComponent: true,
+});
+
 Vue.config.productionTip = false
 
 new Vue({
