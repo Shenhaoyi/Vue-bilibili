@@ -65,13 +65,16 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-right:2vw;
       img {
         width: 24/360*100vw;
         height: 24/360*100vw;
         border-radius: 50%;
       }
       p{
-        padding:5/360*100vw 10/360*100vw;
+        white-space:nowrap;
+        text-align: center;
+        padding:5/360*100vw 5/360*100vw;
         margin:0 5/360*100vw;
         min-width:70/360*100vw;
         background: #fb7299;
