@@ -4,12 +4,14 @@
       <img src="../../assets/logo.png" alt="">
     </div>
     <div class="search">
-      <van-search class='van-search' placeholder="请输入搜索关键词" />
+      <van-search class='van-search' placeholder="请输入搜索关键词" @focus="handleFocus"/>
     </div>
     <div >
       <img v-if="userInfo_img" :src='userInfo_img' @click="handlePersonal">
       <img v-else src="//s1.hdslb.com/bfs/static/jinkela/long/images/login.png@48w_48h_1c.png" @click="handlePersonal">
-      <p>下载App</p>
+      <p>
+        <a href="http://d.bilibili.com/download_app.html">下载App</a>
+      </p>
     </div>
   </div>
 </template>
@@ -17,6 +19,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
+  import {Toast} from 'vant';
 
   @Component
   export default class NavBar extends Vue {
@@ -33,6 +36,10 @@
     handlePersonal(){
       if(this.$router.currentRoute.path !=='/userinfo')
         this.$router.push('/userinfo')
+    }
+
+    handleFocus(){
+      Toast.fail('搜索功能待开发');
     }
   }
 </script>
@@ -84,6 +91,13 @@
         color:white;
         font-size: 13/360*100vw;
         border-radius: 3/360*100vw;
+        a:link,
+        a:visited,
+        a:hover,
+        a:active{
+          color: #fff;
+          text-decoration: none;
+        }
       }
     }
   }
