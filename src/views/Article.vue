@@ -179,13 +179,21 @@
     }
 
     handleLike(){
-      this.likeFlag=!this.likeFlag
-      Toast.success(this.likeFlag?'点赞成功':'取消成功')
+      if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
+        this.likeFlag=!this.likeFlag
+        Toast.success(this.likeFlag?'点赞成功':'取消成功')
+      }else{
+        Toast.fail('请先登录')
+      }
     }
 
     handleCollect(){
-      this.collectFlag=!this.collectFlag
-      Toast.success(this.collectFlag?'收藏成功':'取消成功')
+      if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
+        this.collectFlag=!this.collectFlag
+        Toast.success(this.collectFlag?'收藏成功':'取消成功')
+      }else{
+        Toast.fail('请先登录')
+      }
     }
 
     //分享操作
