@@ -50,7 +50,7 @@
 <style lang="scss" scoped>
   .wrapper{
     .none {
-      padding: 22vw 0;
+      padding: 12vw 0 32vw 0;
       text-align: center;
     }
   }
