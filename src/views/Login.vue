@@ -1,7 +1,7 @@
 <template>
   <div>
     <LoginTop middle-top="登录bilibili">
-      <div slot="right" style="font-size: 13px;" @click="$router.push('/register')">切换到注册</div>
+      <div slot="right" style="font-size: 13px;color:#ff9db5;" @click="$router.push('/register')">切换到注册</div>
     </LoginTop>
 
     <LoginText label="账号"
