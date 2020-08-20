@@ -43,7 +43,6 @@
       const len = res.data.length;
       this.comment = res.data.slice(len - 20);
       this.comment.reverse();
-      console.log(this.comment);
     }
   }
 </script>

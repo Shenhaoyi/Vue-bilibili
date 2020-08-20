@@ -124,7 +124,6 @@
       if (localStorage.getItem('id') && localStorage.getItem('objtoken')) {
         const res = await this.$http.get('./user/' + localStorage.getItem('id'));
         this.userInfo = res.data[0];
-        console.log(this.userInfo);
       }
     }
 
@@ -139,7 +138,6 @@
         this.postcom.comment_content = this.myComment;
         this.postcom.parent_id = null;
         this.postcom.article_id = this.$route.params.id;
-        console.log(this.postcom)
         const result = await this.$http.post('/comment_post/' + localStorage.getItem('id'), this.postcom);
         if(result.status == 200) {
           Toast.success('评论发表成功')

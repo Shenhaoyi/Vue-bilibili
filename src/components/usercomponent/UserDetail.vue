@@ -52,9 +52,6 @@
   @Component
   export default class UserDetail extends Vue {
     @Prop() userInfo!: any;
-    mounted(){
-      console.log(this.userInfo.user_desc)
-    }
 
   }
 </script>

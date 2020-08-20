@@ -124,7 +124,6 @@
       localStorage.removeItem('id');
       Toast.success('成功退出登录');
       setTimeout(()=>{
-        console.log(this.$router)
         this.$router.push('/login')
       },1000)
     }
