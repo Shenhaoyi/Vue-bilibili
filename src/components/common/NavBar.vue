@@ -6,7 +6,7 @@
     <div class="search">
       <van-search class='van-search' placeholder="请输入搜索关键词" @focus="handleFocus"/>
     </div>
-    <div >
+    <div>
       <img v-if="userInfo_img" :src='userInfo_img' @click="handlePersonal">
       <img v-else src="//s1.hdslb.com/bfs/static/jinkela/long/images/login.png@48w_48h_1c.png" @click="handlePersonal">
       <p>
@@ -23,22 +23,27 @@
 
   @Component
   export default class NavBar extends Vue {
-    @Prop() userInfo_img?: string
+    @Prop() userInfo_img?: string;
 
-    handleHome(){
-      if(this.$router.currentRoute.path !=='/'){
-        this.$router.push('/')
-      }else{
-        this.$emit('firstPage')
+    handleHome() {
+      if (this.$router.currentRoute.path !== '/') {
+        this.$router.push('/');
+      } else {
+        this.$emit('firstPage');
       }
     }
 
-    handlePersonal(){
-      if(this.$router.currentRoute.path !=='/userinfo')
-        this.$router.push('/userinfo')
+    handlePersonal() {
+      if (this.$router.currentRoute.path !== '/userinfo') {
+        if (localStorage.getItem('objtoken') && localStorage.getItem('id')) {
+          this.$router.push('/userinfo');
+        } else {
+          this.$router.push('/login');
+        }
+      }
     }
 
-    handleFocus(){
+    handleFocus() {
       Toast.fail('搜索功能待开发');
     }
   }
@@ -55,18 +60,20 @@
       justify-content: center;
       align-items: center;
       width: 110/360*100vw;
+
       img {
         width: 80%;
       }
     }
 
-    .search{
+    .search {
       display: flex;
       justify-content: center;
       align-items: center;
-      .van-search{
-        padding-top:0;
-        padding-bottom:0;
+
+      .van-search {
+        padding-top: 0;
+        padding-bottom: 0;
         border-radius: 3/360*100vw;
       }
     }
@@ -75,26 +82,29 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right:2vw;
+      margin-right: 2vw;
+
       img {
-        width: 24/360*100vw;
-        height: 24/360*100vw;
+        width: 34/360*100vw;
+        height: 34/360*100vw;
         border-radius: 50%;
       }
-      p{
-        white-space:nowrap;
+
+      p {
+        white-space: nowrap;
         text-align: center;
-        padding:5/360*100vw 5/360*100vw;
-        margin:0 5/360*100vw;
-        min-width:70/360*100vw;
+        padding: 5/360*100vw 5/360*100vw;
+        margin: 0 5/360*100vw;
+        min-width: 70/360*100vw;
         background: #fb7299;
-        color:white;
+        color: white;
         font-size: 13/360*100vw;
         border-radius: 3/360*100vw;
+
         a:link,
         a:visited,
         a:hover,
-        a:active{
+        a:active {
           color: #fff;
           text-decoration: none;
         }
