@@ -5,7 +5,7 @@
     <UserDetail :userInfo="userInfo"></UserDetail>
   </div>
 </template>
-
+adasd
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
