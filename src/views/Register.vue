@@ -38,7 +38,7 @@
       username: '',
       password: '',
     };
-    $http: any;
+    $http!: { post: (arg0: string, arg1: { name: string; username: string; password: string }) => any }
 
     async registerSubmit() {
       const rule1 = new RegExp('^.{3,16}$');

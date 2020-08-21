@@ -21,7 +21,7 @@
     uperInfo ={}
     userInfo ={}
     model={}
-    $http: any;
+    $http!: { get: (arg0: string) => any }
 
     async fetchUserInfo() {
       const res = await this.$http.get('./user/' + localStorage.getItem('id'));

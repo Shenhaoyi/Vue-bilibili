@@ -87,7 +87,9 @@
     components: {Comment, Cover, NavBar}
   })
   export default class Article extends Vue {
-    $http: any;
+    $http!: { get: (arg0: string) => any; post: (arg0: string, arg1: { comment_date: string; comment_content: string; parent_id: null; article_id: string }) => any }
+      //不给出category和userinfo会报错
+
 
     //不给出category和userinfo会报错
     model = {category: {}, userinfo: {}};
@@ -162,7 +164,6 @@
           Toast.fail('评论不能为空');
           return;
         }
-        /* eslint-disable */
         this.postcom.comment_date = new Date().toJSON().substring(5, 10);
         this.postcom.comment_content = this.myComment;
         this.postcom.parent_id = null;
@@ -197,8 +198,7 @@
     }
 
     //分享操作
-    /* eslint-disable */
-    onSelect(option) {
+    onSelect(option: { name: string | number | import("vant/types/toast").ToastOptions }) {
       Toast(option.name);
       this.showShare = false;
     }

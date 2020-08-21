@@ -20,7 +20,7 @@
     components: {CommentItem}
   })
   export default class Comment extends Vue {
-    $http: any;
+    $http!: { get: (arg0: string) => any }
 
     @Prop() commentFetchFlag?: boolean
 

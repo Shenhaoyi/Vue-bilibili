@@ -58,7 +58,7 @@
       user_desc:'',
       gender:''
     };
-    $http: any;
+    $http!: { get: (arg0: string) => any; post: (arg0: string, arg1: FormData) => any; }
 
     showName = false; //通过子组件的点击事件来修改
     name = '';//与输入框双向绑定
@@ -81,8 +81,8 @@
       this.selectorUser();
     }
 
-    /* eslint-disable */
-    async afterRead(file) {
+    async afterRead(file: { file: string | Blob; }) {
+      console.log(file)
       const formData = new FormData();
       formData.append('file', file.file);
       const res = await this.$http.post('/upload', formData);
@@ -115,8 +115,7 @@
       }
     }
 
-    /* eslint-disable */
-    async onGenderSelect(data) {
+    async onGenderSelect(data: { name: string; }) {
       this.showGender = false;
       this.userInfo.gender = data.name;
       await this.userInfoUpdate();

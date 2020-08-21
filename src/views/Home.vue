@@ -26,7 +26,7 @@
     components: {Cover, NavBar}
   })
   export default class Home extends Vue {
-    $http: any;
+    $http!: { get: (arg0: string, arg1: { params: { page: any; pagesize: any } } | undefined) => any }
 
     active = 0;//与导航栏的选中的下标同步
     category = []; //所有tabs
