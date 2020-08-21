@@ -91,6 +91,7 @@
     }
 
     async userInfoUpdate() {
+      /* eslint-disable */
       const res = await this.$http.post('/update/' + localStorage.getItem('id'), this.userInfo);
       if (res.data.code === 200) {
         Toast.fail('修改成功');
