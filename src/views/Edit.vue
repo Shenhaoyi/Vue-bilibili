@@ -46,6 +46,7 @@
   import NavBar from '@/components/common/NavBar.vue';
   import EditItem from '@/components/common/EditItem.vue';
   import {Toast} from 'vant';
+  import UserInfo from '@/views/UserInfo.vue';
 
   @Component({
     components: {EditItem, NavBar}
@@ -58,7 +59,7 @@
       user_desc:'',
       gender:''
     };
-    $http!: { get: (arg0: string) => any; post: (arg0: string, arg1: FormData) => any; }
+    $http!: { get: (arg0: string) => any; post: (arg0: string, arg1: any) => any; }
 
     showName = false; //通过子组件的点击事件来修改
     name = '';//与输入框双向绑定
