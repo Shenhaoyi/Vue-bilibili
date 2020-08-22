@@ -1,14 +1,14 @@
 <template>
   <div class="nav-bar">
     <div class="logo" @click="handleHome">
-      <img src="../../assets/logo.png" alt="">
+      <img src="@/assets/logo.png" alt="">
     </div>
     <div class="search">
       <van-search class='van-search' placeholder="请输入搜索关键词" @focus="handleFocus"/>
     </div>
     <div>
       <img v-if="userInfo_img" :src='userInfo_img' @click="handlePersonal" alt="">
-      <img v-else-if="loginFlag" src="../../assets/default_img.jpg" @click="handlePersonal" alt="">
+      <img v-else-if="loginFlag" src="@/assets/default_img.jpg" @click="handlePersonal" alt="">
       <img v-else src="//s1.hdslb.com/bfs/static/jinkela/long/images/login.png@48w_48h_1c.png" @click="handlePersonal" alt="">
       <p>
         <a href="http://d.bilibili.com/download_app.html">下载App</a>

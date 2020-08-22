@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="part1">
       <img class='user-img' v-if="userInfo && userInfo.user_img" :src='userInfo.user_img' alt="">
-      <img class='user-img' v-else src="../../assets/default_img.jpg" alt="">
+      <img class='user-img' v-else src="@/assets/default_img.jpg" alt="">
       <div class="user-edit">
         <div>
           <p>

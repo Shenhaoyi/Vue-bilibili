@@ -1,7 +1,7 @@
 <template>
   <div class="user-info">
     <NavBar :user-info_img="userInfo.user_img"></NavBar>
-    <img src="../assets/bannerTop_new.png" class="background" alt="">
+    <img src="@/assets/bannerTop_new.png" class="background" alt="">
     <UserDetail :uperFlag="true" :userInfo="uperInfo"></UserDetail>
     <div class="back" @click="$router.back()">返回</div>
 

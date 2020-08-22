@@ -2,7 +2,7 @@
   <div>
     <div class="login-top">
       <div class="logo" @click="$router.push('/')">
-        <img src="../../assets/logo.png" alt="">
+        <img src="@/assets/logo.png" alt="">
       </div>
       <div>{{middleTop}}</div>
       <div>

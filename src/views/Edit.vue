@@ -5,7 +5,7 @@
       <van-uploader :after-read="afterRead" preview-size="100vw" class="upload-img"/>
       <EditItem left="头像">
         <img class='user-img' v-if="userInfo && userInfo.user_img" :src="userInfo.user_img" alt="">
-        <img class='user-img' v-else src="../assets/default_img.jpg" alt="">
+        <img class='user-img' v-else src="@/assets/default_img.jpg" alt="">
       </EditItem>
     </div>
     <EditItem left="昵称" @handleClick="showName=true">

@@ -2,7 +2,7 @@
   <div class="commentItem">
     <div class="userImg">
       <img v-if="item.userinfo && item.userinfo.user_img" :src="item.userinfo.user_img" alt=""/>
-      <img v-else src="../../assets/default_img.jpg" alt="">
+      <img v-else src="@/assets/default_img.jpg" alt="">
     </div>
     <div class="commentContent">
       <p>
