@@ -4,8 +4,8 @@
     <div class="head-photo">
       <van-uploader :after-read="afterRead" preview-size="100vw" class="upload-img"/>
       <EditItem left="头像">
-        <img class='user-img' v-if="userInfo && userInfo.user_img" :src='userInfo.user_img'>
-        <img class='user-img' v-else src="@/assets/default_img.jpg">
+        <img class='user-img' v-if="userInfo && userInfo.user_img" :src="userInfo.user_img" alt="">
+        <img class='user-img' v-else src="../assets/default_img.jpg" alt="">
       </EditItem>
     </div>
     <EditItem left="昵称" @handleClick="showName=true">
@@ -46,7 +46,6 @@
   import NavBar from '@/components/common/NavBar.vue';
   import EditItem from '@/components/common/EditItem.vue';
   import {Toast} from 'vant';
-  import UserInfo from '@/views/UserInfo.vue';
 
   @Component({
     components: {EditItem, NavBar}
