@@ -5,7 +5,7 @@
 ### 预览
 [点击预览](http://shenhaoyi.com/vue-bilibili-web/#/)，请使用**http协议**访问，如果重定向到https会请求不到后端的数据，后端的接口只支持http，目前我不知道怎么在部署之后通过https访问。
 ### 项目效果
-![](https://media.giphy.com/media/MBa08MYk6LoNznXzsE/giphy.gif)
+![首页](https://media.giphy.com/media/MBa08MYk6LoNznXzsE/giphy.gif)
 ### 开发
 ```
 npm run serve
