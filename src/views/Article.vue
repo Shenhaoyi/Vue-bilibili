@@ -139,7 +139,7 @@
 
     //当前视屏的数据
     async articleData() {
-      const res = await this.$http.get(this.$route.path);
+      const res = await this.$http.get('/web/api'+this.$route.path);
       this.model = res.data[0];
     }
 
