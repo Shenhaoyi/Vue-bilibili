@@ -43,7 +43,7 @@
       //邢敏不用判断了
       if (rule1.test(this.user.username)) {
         if (rule2.test(this.user.password)) {
-          const res = await this.$http.post('/login', this.user);
+          const res = await this.$http.post('/web/api/login', this.user);
           //登录成功或者失败都会返回信息的，而不是返回个错误!
           Toast.success(res.data.msg);
           if (res.data.code === 200) {

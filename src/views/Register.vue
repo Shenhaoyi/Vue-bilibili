@@ -46,7 +46,7 @@
       if (this.user.name) {
         if (rule1.test(this.user.username)) {
           if (rule2.test(this.user.password)) {
-            const res = await this.$http.post('/register', this.user);
+            const res = await this.$http.post('/web/api/register', this.user);
             Toast.success(res.data.msg);
             if(res.data.code === 200){
               localStorage.setItem('id', res.data.id);

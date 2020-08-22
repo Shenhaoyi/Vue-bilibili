@@ -2,10 +2,11 @@ import axios from 'axios'
 import router from '@/router';
 import {Toast} from 'vant';
 
-const http = axios.create({
-  //接口
-  baseURL:'http://112.74.99.5:3000/web/api'
-})
+// const http = axios.create({
+//   //接口
+//   baseURL:'http://112.74.99.5:3000/web/api'
+// })
+const http =axios
 
 
 //请求拦截

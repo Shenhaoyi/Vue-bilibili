@@ -19,7 +19,7 @@
     $http!: { get: (arg0: string) => any }
 
     async fetchUserInfo() {
-      const res = await this.$http.get('./user/' + localStorage.getItem('id'));
+      const res = await this.$http.get('/web/api/user/' + localStorage.getItem('id'));
       this.userInfo = res.data[0];
     }
 

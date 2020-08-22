@@ -145,7 +145,7 @@
 
     //推荐数据
     async commendData() {
-      const res = await this.$http.get('/commend');
+      const res = await this.$http.get('/web/api/commend');
       this.commendList = res.data;
     }
 
@@ -153,7 +153,7 @@
     async userInfoData() {
       //本地有token才获取用户的信息
       if (localStorage.getItem('id') && localStorage.getItem('objtoken')) {
-        const res = await this.$http.get('./user/' + localStorage.getItem('id'));
+        const res = await this.$http.get('/web/api/user/' + localStorage.getItem('id'));
         this.userInfo = res.data[0];
       }
     }
@@ -168,7 +168,7 @@
         this.postcom.comment_content = this.myComment;
         this.postcom.parent_id = null;
         this.postcom.article_id = this.$route.params.id;
-        const result = await this.$http.post('/comment_post/' + localStorage.getItem('id'), this.postcom);
+        const result = await this.$http.post('/web/api/comment_post/' + localStorage.getItem('id'), this.postcom);
         if (result.status == 200) {
           Toast.success('评论发表成功');
           this.myComment = '';

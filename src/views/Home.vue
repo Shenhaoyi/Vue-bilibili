@@ -35,7 +35,7 @@
 
     async fetchUserInfo() {
       if(localStorage.getItem('id') && localStorage.getItem('objtoken')){
-        const res = await this.$http.get('./user/' + localStorage.getItem('id'),undefined);
+        const res = await this.$http.get('/web/api/user/' + localStorage.getItem('id'),undefined);
         this.userInfo = res.data[0];
       }
     }
@@ -47,7 +47,7 @@
 
     //获取tabs数据并进行改造
     async selectCategory() {
-      const res = await this.$http.get('/category',undefined);
+      const res = await this.$http.get('/web/api/category',undefined);
       //改造数据，每个tab下还有数据要获取，创建一个list来保存
       this.category = res.data.map((item: any) => {
         item.list = [];
@@ -68,7 +68,7 @@
     //获取currentTab的数据
     async selectArticle() {
       const currentTab: any = this.category[this.active];
-      const res = await this.$http.get('/detail/' + currentTab._id,{
+      const res = await this.$http.get('/web/api/detail/' + currentTab._id,{
         params:{
           page:currentTab.page,
           pagesize:currentTab.pagesize

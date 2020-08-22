@@ -73,7 +73,7 @@
     ];
 
     async selectorUser() {
-      const res = await this.$http.get('./user/' + localStorage.getItem('id'));
+      const res = await this.$http.get('/web/api/user/' + localStorage.getItem('id'));
       this.userInfo = res.data[0];
     }
 
@@ -85,14 +85,14 @@
       console.log(file)
       const formData = new FormData();
       formData.append('file', file.file);
-      const res = await this.$http.post('/upload', formData);
+      const res = await this.$http.post('/web/api/upload', formData);
       this.userInfo.user_img = res.data.url;
       await this.userInfoUpdate();
     }
 
     async userInfoUpdate() {
       /* eslint-disable */
-      const res = await this.$http.post('/update/' + localStorage.getItem('id'), this.userInfo);
+      const res = await this.$http.post('/web/api/update/' + localStorage.getItem('id'), this.userInfo);
       if (res.data.code === 200) {
         Toast.fail('修改成功');
       }
