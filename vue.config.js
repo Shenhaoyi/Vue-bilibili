@@ -10,16 +10,19 @@ module.exports = {
   devServer: {
     host: 'localhost',
     port: 8000, // 端口号
-    https: false, // https:{type:Boolean}
+    // https: false, // https:{type:Boolean}
     open: true, //配置自动启动浏览器  http://172.11.11.22:8888/rest/XX/
-    hotOnly: true, // 热更新
+    // hotOnly: true, // 热更新
     // proxy: 'http://localhost:8000'   // 配置跨域处理,只有一个代理
     proxy: { //配置自动启动浏览器
-      "http://112.74.99.5:3000/web/api": {
+      "/web": {
         target: "http://112.74.99.5:3000",
         changeOrigin: true,
         // ws: true,//websocket支持
-        secure: false
+        // secure: false,
+        // pathRewrite: {
+        //   '/web/api': 'http://112.74.99.5:3000/web/api'
+        // }
       }
     }
   },
