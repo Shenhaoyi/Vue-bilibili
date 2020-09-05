@@ -2,8 +2,12 @@
 仿b站移动端开发
 技术栈 vue + vue-router + axios + sass + vant
 
-接口是别人开源的，http://112.74.99.5:3000/web/api
+### 预览
+建议使用浏览器的手机模式访问。
 
+**预览必看**：请使用浏览器的手机模式访问，同时需要关闭浏览器将 http 协议的网址重定向到 https 的功能，否则获取接口数据时会报错。
+
+预览链接：http://shenhaoyi.com/vue-bilibili-web/
 ### 项目效果
 
 #### 1 首页
@@ -17,13 +21,6 @@
 
 ![注册](https://media.giphy.com/media/JRD29QLjdrl79fE7tr/giphy.gif)
 
-### 预览
-建议使用浏览器的手机模式访问。
-
-请使用**http协议**访问，如果重定向到https会请求不到后端的数据，后端的接口只支持http，目前我不知道怎么在部署之后通过https访问。
-
-[点击预览](http://shenhaoyi.com/vue-bilibili-web/#/)
-
 ### 开发
 ```
 npm run serve
@@ -33,3 +30,5 @@ npm run serve
 ```
 npm run build
 ```
+### 感谢
+感谢开源接口：http://112.74.99.5:3000/web/api
